@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="header">
+		<img alt="logo" src="/img/images.png">
+	</div>
+	<div id ="error">
+	
+	</div>
+	<div>
+		<form name="f" th:action="@{/login}" method="post"> 
+			<label>Loginname: </label><input type="text" id="username" name="username" placeholder="john.doe@fdmgroup.com"/> 
+			<label>Password: </label><input type="password" id="password" name="password" placeholder="password"/>
+			<input type="submit" value="Login">
+		</form>
+	</div>
+</body>
+</html>
