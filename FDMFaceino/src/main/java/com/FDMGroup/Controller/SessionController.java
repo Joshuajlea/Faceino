@@ -9,10 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.FDMGroup.Services.LoginDataService;
+import com.FDMGroup.Services.Implementation.LoginDataServiceImpl;
+
 @Controller
 @SessionAttributes
 public class SessionController {
 	
+	LoginDataService loginDataService = new LoginDataServiceImpl();
 	
 	@RequestMapping("/home")
 	public String greetUser(HttpSession session, Model model, Authentication auth){
@@ -23,7 +27,7 @@ public class SessionController {
 			model.addAttribute("message", "Welcome for the first time");
 		}
 
-		session.setAttribute("loginname", auth.getName());
+		session.setAttribute("userData", loginDataService.getUserDataFromDatabaseByName(auth.getName()));
 		
 		return "homepage";
 	}
