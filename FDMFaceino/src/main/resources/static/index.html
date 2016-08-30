@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello WebSocket</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script type="text/javascript">
+	var stompClient = null;
+	var stompClientDirect = null;
+
+	function setConnected(connected) {
+		document.getElementById('connect').disabled = connected;
+		document.getElementById('disconnect').disabled = !connected;
+		document.getElementById('conversationDiv').style.visibility = connected ? 'visible'
+				: 'hidden';
+		document.getElementById('response').innerHTML = '';
+	}
+
+	function connect() {
+		var socket = new SockJS('/update');
+		stompClient = Stomp.over(socket);
+		stompClient.connect({}, function(frame) {
+			setConnected(true);
+			console.log('Connected: ' + frame);
+			stompClient.subscribe('/topic/redes', function(greeting) {
+				showGreeting(JSON.parse(greeting.body));
+			});
+		});
+		
+		var socket2 = new SockJS('/update');
+		stompClientDirect = Stomp.over(socket2)
+		stompClientDirect.connect({}, function(frame) {
+			setConnected(true);
+			console.log('Connected: ' + frame);
+			stompClientDirect.subscribe('/user/queue/reply', function(greeting) {
+				showGreeting(JSON.parse(greeting.body));
+			});
+		});
+	}
+
+	function disconnect() {
+		if (stompClient != null) {
+			stompClient.disconnect();
+		}
+		setConnected(false);
+		console.log("Disconnected");
+	}
+
+	function sendName() {
+		var category = document.getElementById('category').value;
+		var redeContent = document.getElementById('redeContent').value;
+		stompClient.send("/app/update", {}, JSON.stringify({
+			'category' : category,
+			'content' : redeContent
+		}));
+	}
+
+	function showGreeting(message) {
+		var response = document.getElementById('response');
+		var p = document.createElement('p');
+		p.id = "message";
+		p.style.wordWrap = 'break-word';
+		p.appendChild(document.createTextNode(message.category + ': '
+				+ message.content));
+		response.insertBefore(p, response.childNodes[0]);
+	}
+</script>
+<style>
+#message {
+	margin-top: 5px;
+	padding-top: 10px;
+	padding-left: 12px;
+	border-radius: 20px;
+	width: 512px;
+	border: 1;
+	background-color: #7FFF00;
+}
+</style>
+</head>
+<body onload="disconnect()">
+	<noscript>
+		<h2 style="color: #ff0000">Seems your browser doesn't support
+			Javascript! Websocket relies on Javascript being enabled. Please
+			enable Javascript and reload this page!</h2>
+	</noscript>
+	<div>
+		<div>
+			<button id="connect" onclick="connect();">Connect</button>
+			<button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+		</div>
+		<div id="conversationDiv">
+			<form action="javascript:sendName()">
+				<label>Category: </label><input type="text" id="category" /> 
+				<label>Content: </label><input type="text" id="redeContent" />
+				<input type="submit" value="Submit">
+			</form>
+			<div id="response"><div></div></div>
+		</div>
+	</div>
+</body>
+</html>
