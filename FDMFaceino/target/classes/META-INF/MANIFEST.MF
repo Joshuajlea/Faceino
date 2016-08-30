@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: FDMFaceino
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: martin.mrowiec
+Implementation-Vendor-Id: com.FDMGroup
+Build-Jdk: 1.8.0_60
+Implementation-URL: http://projects.spring.io/spring-boot/FDMFaceino/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
