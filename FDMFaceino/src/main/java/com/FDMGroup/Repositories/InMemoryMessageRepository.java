@@ -5,22 +5,33 @@ import java.util.List;
 
 import com.FDMGroup.Entities.Message;
 
-public class InMemoryMessageRepository {
-	static List<Message> messages;
+public class InMemoryMessageRepository implements Repository<Message>{
 	
-	public InMemoryMessageRepository(){
-		messages = new ArrayList<Message>();
+	public static InMemoryMessageRepository INSTANCE;
+	
+	private InMemoryMessageRepository(){
 	}
 	
-	public boolean addMessage(Message con){
-		return messages.add(con);
+	public static synchronized InMemoryMessageRepository getInstance(){
+		if(INSTANCE!=null)
+			return INSTANCE;
+		
+		return new InMemoryMessageRepository();
 	}
 	
+	static List<Message> messages = new ArrayList<Message>();
+		
 	public List<Message> getAll(){
 		return messages;
 	}
 	
-	public Message getMessageById(String id){
+	@Override
+	public boolean add(Message message) {
+		return messages.add(message);
+	}
+
+	@Override
+	public Message getById(String id) {
 		for (Message con : messages)
 			if(con.getMessageId().equals(id))
 				return con;

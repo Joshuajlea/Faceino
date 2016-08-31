@@ -6,22 +6,33 @@ import java.util.List;
 import com.FDMGroup.Entities.Conversation;
 
 
-public class InMemoryConversationRepository {
-	static List<Conversation> conversations;
+public class InMemoryConversationRepository implements Repository<Conversation>{
 	
-	public InMemoryConversationRepository(){
-		conversations = new ArrayList<Conversation>();
+	public static InMemoryConversationRepository INSTANCE;
+	
+	private InMemoryConversationRepository(){
 	}
 	
-	public boolean addConversation(Conversation con){
-		return conversations.add(con);
+	public static synchronized InMemoryConversationRepository getInstance(){
+		if(INSTANCE!=null)
+			return INSTANCE;
+		
+		return new InMemoryConversationRepository();
 	}
 	
+	private static List<Conversation> conversations = new ArrayList<Conversation>();
+		
 	public List<Conversation> getAll(){
 		return conversations;
+	}	
+
+	@Override
+	public boolean add(Conversation obj) {
+		return conversations.add(obj);
 	}
-	
-	public Conversation getConversationById(String id){
+
+	@Override
+	public Conversation getById(String id) {
 		for (Conversation con : conversations)
 			if(con.getConversationId().equals(id))
 				return con;

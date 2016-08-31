@@ -5,22 +5,35 @@ import java.util.List;
 
 import com.FDMGroup.Entities.User;
 
-public class InMemoryUserRepository {
-	static List<User> users;
+public class InMemoryUserRepository implements Repository<User>{
 	
-	public InMemoryUserRepository(){
-		users = new ArrayList<User>();
+	public static InMemoryUserRepository INSTANCE;
+	
+	private InMemoryUserRepository(){
 	}
 	
-	public boolean addConversation(User usr){
-		return users.add(usr);
+	public static synchronized InMemoryUserRepository getInstance(){
+		if(INSTANCE!=null)
+			return INSTANCE;
+		
+		return new InMemoryUserRepository();
 	}
 	
-	public List<User> getAll(){
-		return users;
-	}
+	private static List<User> users = new ArrayList<User>();		
 	
-	public User getConversationById(String id){
+	@Override
+	public boolean add(User obj) {
+		return users.add(obj);
+	}
+
+	@Override
+	public List<User> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getById(String id) {
 		for (User usr : users)
 			if(usr.getLoginName().equals(id))
 				return usr;
