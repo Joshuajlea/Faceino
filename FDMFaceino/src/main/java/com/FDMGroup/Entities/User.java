@@ -2,7 +2,13 @@ package com.FDMGroup.Entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
+
 public class User {
+	
+	@Column(name = "enabled")
+    private boolean enabled;
+
 	
 	private String loginName, password, picReference;
 	private int balance;
@@ -67,5 +73,8 @@ public class User {
 	public void setBlocked(boolean blocked) {
 		this.blocked = blocked;
 	}
-
+	public User() {
+        super();
+        this.enabled=false;
+}
 }
