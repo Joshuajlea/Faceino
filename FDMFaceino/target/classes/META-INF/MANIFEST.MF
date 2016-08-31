@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: FDMFaceino
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: sebastian.verfers
+Built-By: tim.bell
 Implementation-Vendor-Id: com.FDMGroup
 Build-Jdk: 1.8.0_60
 Implementation-URL: http://projects.spring.io/spring-boot/FDMFaceino/

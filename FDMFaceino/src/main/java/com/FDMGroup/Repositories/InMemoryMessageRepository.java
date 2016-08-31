@@ -1,4 +1,4 @@
-package com.FDMGroup.DALinterfaces;
+package com.FDMGroup.Repositories;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import com.FDMGroup.Entities.Message;
 
 public class InMemoryMessageRepository {
-	List<Message> messages;
+	static List<Message> messages;
 	
 	public InMemoryMessageRepository(){
 		messages = new ArrayList<Message>();

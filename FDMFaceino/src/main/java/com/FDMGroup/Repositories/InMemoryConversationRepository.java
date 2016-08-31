@@ -1,4 +1,4 @@
-package com.FDMGroup.DALinterfaces;
+package com.FDMGroup.Repositories;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import com.FDMGroup.Entities.Conversation;
 
 
 public class InMemoryConversationRepository {
-	List<Conversation> conversations;
+	static List<Conversation> conversations;
 	
 	public InMemoryConversationRepository(){
 		conversations = new ArrayList<Conversation>();

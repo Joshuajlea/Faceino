@@ -1,4 +1,4 @@
-package com.FDMGroup.DALinterfaces;
+package com.FDMGroup.Repositories;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import com.FDMGroup.Entities.User;
 
 public class InMemoryUserRepository {
-	List<User> users;
+	static List<User> users;
 	
 	public InMemoryUserRepository(){
 		users = new ArrayList<User>();
