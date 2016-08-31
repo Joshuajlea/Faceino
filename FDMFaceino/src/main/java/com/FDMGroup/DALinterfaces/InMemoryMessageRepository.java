@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.FDMGroup.Entities.Message;
-import com.FDMGroup.Entities.User;
 
 public class InMemoryMessageRepository {
 	private List<Message> messages = new ArrayList<Message>();

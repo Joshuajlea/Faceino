@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.FDMGroup.Entities.Conversation;
-import com.FDMGroup.Entities.Message;
 
 
 public class InMemoryConversationRepository {

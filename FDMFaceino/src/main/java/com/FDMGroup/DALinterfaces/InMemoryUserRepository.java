@@ -20,7 +20,7 @@ public class InMemoryUserRepository {
 	private InMemoryUserRepository(){		
 	}
 	
-	public boolean addConversation(User usr){
+	public boolean addUser(User usr){
 		return users.add(usr);
 	}
 	
