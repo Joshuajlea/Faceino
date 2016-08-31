@@ -1,6 +1,6 @@
 package com.FDMGroup.Services;
 
-import tempFiles.User;
+import com.FDMGroup.Entities.User;
 
 /***
  * 
