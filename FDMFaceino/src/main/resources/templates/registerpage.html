@@ -9,13 +9,13 @@
 		<img alt="logo" src="/img/images.png">
 	</div>
 	<div id ="error">
-	
+		{{errorMessage}}
 	</div>
 	<div>
 		<form name="f" th:action="@/register" method="post"> 
 			<label>Loginname: </label><input type="email" id="username" name="username" placeholder="john.doe@fdmgroup.com"/> 
-			<label>Password: </label><input type="password" id="password" name="password" placeholder="password"/> 
-			<label>Repeat Password: </label><input type="password" id="rpassword" name="rpassword" placeholder="repeat password"/>
+			<label>Password: </label><input type="password" id="password" min="5" name="password" placeholder="password"/> 
+			<label>Repeat Password: </label><input type="password" id="rpassword" min="5" name="rpassword" placeholder="repeat password"/>
 			<input type="submit" value="Register">
 		</form>
 	</div>
