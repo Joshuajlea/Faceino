@@ -4,13 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.FDMGroup.Entities.Conversation;
+import com.FDMGroup.Entities.Message;
 
 
 public class InMemoryConversationRepository {
-	List<Conversation> conversations;
+	private List<Conversation> conversations = new ArrayList<Conversation>();
 	
-	public InMemoryConversationRepository(){
-		conversations = new ArrayList<Conversation>();
+	public static InMemoryConversationRepository INSTANCE;
+	
+	public static synchronized InMemoryConversationRepository getInstance(){
+		if(INSTANCE != null)
+			INSTANCE = new InMemoryConversationRepository();
+		
+		return INSTANCE;
+	}	
+	
+	private InMemoryConversationRepository(){		
 	}
 	
 	public boolean addConversation(Conversation con){
@@ -21,7 +30,7 @@ public class InMemoryConversationRepository {
 		return conversations;
 	}
 	
-	public Conversation getConversationById(String id){
+	public Conversation getById(String id){
 		for (Conversation con : conversations)
 			if(con.getConversationId().equals(id))
 				return con;

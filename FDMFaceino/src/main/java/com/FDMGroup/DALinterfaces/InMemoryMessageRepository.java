@@ -4,13 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.FDMGroup.Entities.Message;
+import com.FDMGroup.Entities.User;
 
 public class InMemoryMessageRepository {
-	List<Message> messages;
+	private List<Message> messages = new ArrayList<Message>();
 	
-	public InMemoryMessageRepository(){
-		messages = new ArrayList<Message>();
+	public static InMemoryMessageRepository INSTANCE;
+	
+	public static synchronized InMemoryMessageRepository getInstance(){
+		if(INSTANCE != null)
+			INSTANCE = new InMemoryMessageRepository();
+		
+		return INSTANCE;
+	}	
+	
+	private InMemoryMessageRepository(){		
 	}
+	
 	
 	public boolean addMessage(Message con){
 		return messages.add(con);
@@ -20,7 +30,7 @@ public class InMemoryMessageRepository {
 		return messages;
 	}
 	
-	public Message getMessageById(String id){
+	public Message getById(String id){
 		for (Message con : messages)
 			if(con.getMessageId().equals(id))
 				return con;
