@@ -10,12 +10,14 @@ public class User {
 	private List<String> messageIds;
 	private boolean active,
 					blocked;
+	private List<String> roles;
 	
-	public User(String loginName, String password, String picReference) {
+	public User(String loginName, String password, String picReference, List<String> roles) {
 		this.loginName = loginName;
 		this.password = password;
 		this.picReference = picReference;
 		this.balance = 1000;
+		this.roles = roles;
 	}
 	
 	public boolean addConversation(Conversation conversation){
@@ -67,5 +69,10 @@ public class User {
 	public void setBlocked(boolean blocked) {
 		this.blocked = blocked;
 	}
+	
+	public List<String> getRoles() {
+		return roles;
+	}
+
 
 }
