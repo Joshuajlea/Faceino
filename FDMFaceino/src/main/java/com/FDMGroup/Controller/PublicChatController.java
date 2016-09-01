@@ -5,6 +5,7 @@ import org.springframework.messaging.converter.SimpleMessageConverter;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,7 +18,6 @@ public class PublicChatController {
 	private SimpMessagingTemplate messageConverter;
 
     @MessageMapping("/public")
-    @SendTo("/queue/messages")
     public Message sendMessage(Message message) throws Exception {
     	System.out.println(message.getContent());
     	messageConverter.convertAndSend("/user/queue/messages", message);
