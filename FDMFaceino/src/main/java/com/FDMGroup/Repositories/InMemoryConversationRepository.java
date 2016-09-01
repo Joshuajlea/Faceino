@@ -12,13 +12,13 @@ public class InMemoryConversationRepository {
 	private static InMemoryConversationRepository INSTANCE;
 	
 	public static synchronized InMemoryConversationRepository getInstance(){
-		if(INSTANCE != null)
+		if(INSTANCE == null)
 			INSTANCE = new InMemoryConversationRepository();
 		
 		return INSTANCE;
 	}	
 	
-	private InMemoryConversationRepository(){		
+	private InMemoryConversationRepository(){	
 	}
 	
 	public boolean addConversation(Conversation con){

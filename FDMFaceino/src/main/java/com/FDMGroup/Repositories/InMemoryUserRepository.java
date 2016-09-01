@@ -8,10 +8,10 @@ import com.FDMGroup.Entities.User;
 public class InMemoryUserRepository {
 	private List<User> users = new ArrayList<User>();
 	
-	public static InMemoryUserRepository INSTANCE;
+	private static InMemoryUserRepository INSTANCE;
 	
 	public static synchronized InMemoryUserRepository getInstance(){
-		if(INSTANCE != null)
+		if(INSTANCE == null)
 			INSTANCE = new InMemoryUserRepository();
 		
 		return INSTANCE;
