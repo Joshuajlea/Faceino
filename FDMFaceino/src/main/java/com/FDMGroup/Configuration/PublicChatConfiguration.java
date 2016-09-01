@@ -12,7 +12,7 @@ public class PublicChatConfiguration extends AbstractWebSocketMessageBrokerConfi
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
-		config.enableSimpleBroker("/queue");
+		config.enableSimpleBroker("/queue","/user");
 		config.setApplicationDestinationPrefixes("/app");
 	}
 
