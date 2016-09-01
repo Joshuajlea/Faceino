@@ -1,4 +1,4 @@
-package com.FDMGroup.DALinterfaces;
+package com.FDMGroup.Repositories;
 
 import java.util.ArrayList;
 import java.util.List;
