@@ -6,11 +6,13 @@ import java.util.List;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
 import com.FDMGroup.DALinterfaces.UserDAL;
 import com.FDMGroup.Entities.User;
 import com.FDMGroup.Repositories.InMemoryUserRepository;
 
+@Component
 public class UserDALImp implements UserDAL {
 
 	@Override

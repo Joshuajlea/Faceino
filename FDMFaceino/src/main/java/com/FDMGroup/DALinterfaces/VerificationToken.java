@@ -1,4 +1,4 @@
-package com.FDMGroup.DALinterfaces;
+/*package com.FDMGroup.DALinterfaces;
 
 import java.security.Timestamp;
 import java.util.Date;
@@ -51,9 +51,10 @@ public class VerificationToken {
 		cal.setTime(new Timestamp(cal.getTime().getTime)));
 		cal.add(Calender.MINUTE, expiryTimeInMinutes);
 		return new Date(cal.getTime().getTime());
+		return null;
 	}
 
 	
-	}
 	
-}
+	
+}*/
