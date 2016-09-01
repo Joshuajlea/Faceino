@@ -10,7 +10,7 @@ public class RegistrationDataServiceImpl implements RegistrationDataService{
 
 	@Override
 	public List<User> getAllUser() {
-		return Arrays.asList(new User("test@fdmgroup.com", "123", "url"));
+		return Arrays.asList(new User("test@fdmgroup.com", "123", "url", Arrays.asList("USER")));
 	}
 
 }

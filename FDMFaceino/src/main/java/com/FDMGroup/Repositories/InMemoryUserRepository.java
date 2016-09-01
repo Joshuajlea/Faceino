@@ -28,7 +28,7 @@ public class InMemoryUserRepository {
 		return users;
 	}
 	
-	public User getById(String id){
+	public User getByLoginName(String id){
 		for (User usr : users)
 			if(usr.getLoginName().equals(id))
 				return usr;

@@ -9,7 +9,7 @@ import com.FDMGroup.Entities.Conversation;
 public class InMemoryConversationRepository {
 	private List<Conversation> conversations = new ArrayList<Conversation>();
 	
-	public static InMemoryConversationRepository INSTANCE;
+	private static InMemoryConversationRepository INSTANCE;
 	
 	public static synchronized InMemoryConversationRepository getInstance(){
 		if(INSTANCE != null)
