@@ -2,6 +2,8 @@ package com.FDMGroup.DALimplementation;
 
 import java.util.List;
 
+import javax.persistence.Column;
+
 import com.FDMGroup.DALinterfaces.UserDAL;
 import com.FDMGroup.Entities.User;
 import com.FDMGroup.Repositories.InMemoryUserRepository;
@@ -23,4 +25,11 @@ public class UserDALImp implements UserDAL {
 		return InMemoryUserRepository.getInstance().addUser(user);
 	}
 
+	@Column(name = "enabled")
+    private boolean enabled;
+     
+    public UserDALImp() {
+        super();
+        this.enabled=false;
+}
 }
