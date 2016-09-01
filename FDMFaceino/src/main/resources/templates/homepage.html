@@ -51,20 +51,13 @@
 		}));
 	}
 
-	function showMessage(message) {
-		var response = document.getElementById('response');
-		var p = document.createElement('p');
-		p.style.wordWrap = 'break-word';
-		p.appendChild(document.createTextNode(message.sender + ": "
-				+ message.content));
-		response.insertBefore(p, response.childNodes[0]);
-	}
-	
+		
 	function showMessage(message) {
         var response = document.getElementById('response');
         
         var boldName = document.createElement('b');
-        boldName.appendChild(document.createTextNode(message.sender));
+        var name = message.sender.split('@')[0];
+        boldName.appendChild(document.createTextNode(name));
 
         var cursivContent = document.createElement('i');
         cursivContent.appendChild(document.createTextNode(message.content));            
@@ -73,15 +66,14 @@
         p.id = "oneMessageInChat";
         p.style.wordWrap = 'break-word';
         p.appendChild(boldName);
-        p.appendChild(document.createTextNode('  :  '));
+        p.appendChild(document.createTextNode(' : '));
         p.appendChild(cursivContent);
         p.appendChild(document.createElement('br'));
         p.appendChild(document.createElement('br'));
         response.insertBefore(p, response.childNodes[0]);
         var content = document.getElementById('message');
         content.value = '';
-        content.focus();
-        
+        content.focus();        
     }
 	
 </script>
