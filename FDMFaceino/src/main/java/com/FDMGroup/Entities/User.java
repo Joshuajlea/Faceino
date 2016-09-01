@@ -77,5 +77,39 @@ public class User {
         this.enabled=false;
 }
 
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setPicReference(String picReference) {
+		this.picReference = picReference;
+	}
+
+	public void setConversationIds(List<String> conversationIds) {
+		this.conversationIds = conversationIds;
+	}
+
+	public void setMessageIds(List<String> messageIds) {
+		this.messageIds = messageIds;
+	}
+
+	public void setEnabled(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String getEmail() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
