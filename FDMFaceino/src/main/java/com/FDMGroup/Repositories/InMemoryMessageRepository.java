@@ -8,7 +8,7 @@ import com.FDMGroup.Entities.Message;
 public class InMemoryMessageRepository {
 	private List<Message> messages = new ArrayList<Message>();
 	
-	public static InMemoryMessageRepository INSTANCE;
+	private static InMemoryMessageRepository INSTANCE;
 	
 	public static synchronized InMemoryMessageRepository getInstance(){
 		if(INSTANCE != null)
@@ -19,8 +19,7 @@ public class InMemoryMessageRepository {
 	
 	private InMemoryMessageRepository(){		
 	}
-	
-	
+		
 	public boolean addMessage(Message con){
 		return messages.add(con);
 	}
