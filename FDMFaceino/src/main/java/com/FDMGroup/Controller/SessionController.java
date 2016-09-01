@@ -33,4 +33,9 @@ public class SessionController {
 		return "loginpage";
 	}
 	
+	@RequestMapping("/redirectHome")
+	public String redirectHome(){
+		return "redirect:/home";
+	}
+	
 }

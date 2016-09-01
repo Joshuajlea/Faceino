@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.and()
 		.formLogin()
 			.loginPage("/login")
-			.successForwardUrl("/home")
+			.successForwardUrl("/redirectHome")
 			.permitAll()
 		.and()
 			.csrf().disable();

@@ -1,4 +1,4 @@
-package com.FDMGroup.Verification;
+/*package com.FDMGroup.Verification;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -78,4 +78,4 @@ public class VerificationToken {
 	}
      
   
-}
+}*/
