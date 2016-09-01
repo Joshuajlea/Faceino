@@ -3,8 +3,8 @@ package com.FDMGroup.DALimplementation;
 import java.util.List;
 
 import com.FDMGroup.DALinterfaces.ConversationDAL;
-import com.FDMGroup.DALinterfaces.InMemoryConversationRepository;
 import com.FDMGroup.Entities.Conversation;
+import com.FDMGroup.Repositories.InMemoryConversationRepository;
 
 public class ConversationDALImp implements ConversationDAL {
 	
