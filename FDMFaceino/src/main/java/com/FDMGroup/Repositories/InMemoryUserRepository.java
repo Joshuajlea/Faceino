@@ -1,6 +1,7 @@
 package com.FDMGroup.Repositories;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.FDMGroup.Entities.User;
@@ -11,13 +12,14 @@ public class InMemoryUserRepository {
 	public static InMemoryUserRepository INSTANCE;
 	
 	public static synchronized InMemoryUserRepository getInstance(){
-		if(INSTANCE != null)
+		if(INSTANCE == null)
 			INSTANCE = new InMemoryUserRepository();
 		
 		return INSTANCE;
 	}	
 	
-	private InMemoryUserRepository(){		
+	private InMemoryUserRepository(){	
+		users.add(new User("martin.mrowiec@fdmgroup.com", "12345", "", Arrays.asList("USER", "ADMIN")));
 	}
 	
 	public boolean addUser(User usr){
