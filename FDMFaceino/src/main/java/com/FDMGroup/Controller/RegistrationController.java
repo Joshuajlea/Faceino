@@ -24,11 +24,14 @@ public class RegistrationController {
 	@PostMapping("/register")
 	public String checkRegistration(HttpServletRequest request, Model model){
 				
-		String returnValue = "redirect:/login";
+		String loginUrl = "redirect:/login";
 		
-		returnValue = checkUsernameForExistence(request, model, returnValue);
-		returnValue = checkIfPasswordIsOK(request, model, returnValue);
-		returnValue = checkIfMailAdressIsOk(request, model, returnValue);
+		String returnValue = checkUsernameForExistence(request, model, loginUrl);
+		
+		if(loginUrl.equals(returnValue)){
+			RegisterDAO.addUser(request.getParameter("username"), request.getParameter("password"), "");
+		}
+		
 		
 		// send verification mail here
 		
@@ -40,7 +43,7 @@ public class RegistrationController {
 			model.addAttribute("errorMessage", "Username already registered");	
 			return "registerpage";
 		}
-		return value;
+		return checkIfPasswordIsOK(request, model, value);
 	}
 
 	private String checkIfPasswordIsOK(HttpServletRequest request, Model model, String value){
@@ -48,7 +51,7 @@ public class RegistrationController {
 			model.addAttribute("errorMessage", "Passwords not the same");
 			return "registerpage";
 		}
-		return value;
+		return checkIfMailAdressIsOk(request, model, value);
 	}
 	
 	private String checkIfMailAdressIsOk(HttpServletRequest request, Model model, String value){

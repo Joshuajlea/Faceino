@@ -11,13 +11,14 @@ public class InMemoryUserRepository {
 	public static InMemoryUserRepository INSTANCE;
 	
 	public static synchronized InMemoryUserRepository getInstance(){
-		if(INSTANCE != null)
+		if(INSTANCE == null)
 			INSTANCE = new InMemoryUserRepository();
 		
 		return INSTANCE;
 	}	
 	
-	private InMemoryUserRepository(){		
+	private InMemoryUserRepository(){
+		users.add(new User("martin.mrowiec@fdmgroup.com", "12345", ""));
 	}
 	
 	public boolean addUser(User usr){

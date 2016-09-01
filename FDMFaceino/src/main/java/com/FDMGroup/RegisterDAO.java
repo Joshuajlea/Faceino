@@ -27,4 +27,8 @@ public class RegisterDAO {
 	public static boolean checkPassword(String password, String rpassword){
 		return password.equals(rpassword);
 	}
+	
+	public static boolean addUser(String loginname, String password, String url){
+		return regDS.registerUserToDatabase(new User(loginname, password, url));
+	}
 }
