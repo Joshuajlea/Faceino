@@ -9,7 +9,6 @@ public class User {
 	@Column(name = "enabled")
     private boolean enabled;
 
-	
 	private String loginName, password, picReference;
 	private int balance;
 	private List<String> conversationIds;
