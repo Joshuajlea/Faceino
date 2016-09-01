@@ -20,6 +20,9 @@ public class InMemoryUserRepository {
 	
 	private InMemoryUserRepository(){	
 		users.add(new User("martin.mrowiec@fdmgroup.com", "12345", "", Arrays.asList("USER", "ADMIN")));
+		users.add(new User("sebastian.verfers@fdmgroup.com", "12345", "", Arrays.asList("USER", "ADMIN")));
+		users.add(new User("tim.bell@fdmgroup.com", "12345", "", Arrays.asList("USER", "ADMIN")));
+		users.add(new User("joshua.lea@fdmgroup.com", "12345", "", Arrays.asList("USER", "ADMIN")));
 	}
 	
 	public boolean addUser(User usr){
