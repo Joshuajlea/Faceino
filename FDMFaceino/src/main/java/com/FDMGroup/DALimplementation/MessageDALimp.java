@@ -2,7 +2,7 @@ package com.FDMGroup.DALimplementation;
 
 import java.util.List;
 
-import com.FDMGroup.DALinterfaces.InMemoryMessageRepository;
+import com.FDMGroup.Repositories.InMemoryMessageRepository;
 import com.FDMGroup.DALinterfaces.MessageDAL;
 import com.FDMGroup.Entities.Message;
 

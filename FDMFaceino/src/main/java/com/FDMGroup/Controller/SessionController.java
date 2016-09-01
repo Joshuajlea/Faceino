@@ -21,12 +21,7 @@ public class SessionController {
 	@RequestMapping("/home")
 	public String greetUser(HttpSession session, Model model, Authentication auth){
 		
-		session.setMaxInactiveInterval(300);
-		
-		if(session.isNew()){
-			model.addAttribute("message", "Welcome for the first time");
-		}
-
+		session.setMaxInactiveInterval(600);
 		session.setAttribute("userData", loginDataService.getUserDataFromDatabaseByName(auth.getName()));
 		
 		return "homepage";

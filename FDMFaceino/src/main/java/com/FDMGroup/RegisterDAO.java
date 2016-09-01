@@ -1,5 +1,6 @@
 package com.FDMGroup;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.FDMGroup.Entities.User;
@@ -26,5 +27,9 @@ public class RegisterDAO {
 	
 	public static boolean checkPassword(String password, String rpassword){
 		return password.equals(rpassword);
+	}
+	
+	public static boolean addUser(String loginname, String password, String url){
+		return regDS.registerUserToDatabase(new User(loginname, password, url, Arrays.asList("USER")));
 	}
 }

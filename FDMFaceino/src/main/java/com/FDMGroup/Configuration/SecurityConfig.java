@@ -7,16 +7,15 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.FDMGroup.DALinterfaces.UserDAL;
+
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-			.withUser("martin.mrowiec@fdmgroup.com").password("12345").roles("USER", "ADMIN")
-		.and()
-			.withUser("admin").password("1234").roles("USER", "ADMIN");
+	public void configureGlobal(AuthenticationManagerBuilder auth, UserDAL userData) throws Exception {
+		auth.userDetailsService(userData);
 	}
 	
 	@Override
