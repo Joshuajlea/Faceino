@@ -1,7 +1,12 @@
 package com.FDMGroup.Controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +19,7 @@ import com.FDMGroup.RegisterDAO;
 @SessionAttributes
 public class RegistrationController {
 
+	
 	@GetMapping("/register")
 	public String register(Model model){
 		String errorMessage = "";
@@ -22,14 +28,14 @@ public class RegistrationController {
 	}
 	
 	@PostMapping("/register")
-	public String checkRegistration(HttpServletRequest request, Model model){
+	public String checkRegistration(HttpServletRequest request, Model model,UserDetails ud){
 				
 		String loginUrl = "redirect:/login";
 		
 		String returnValue = checkUsernameForExistence(request, model, loginUrl);
 		
 		if(loginUrl.equals(returnValue)){
-			RegisterDAO.addUser(request.getParameter("username"), request.getParameter("password"), "");
+			RegisterDAO.addUser(request.getParameter("username"), request.getParameter("password"), "");			
 		}
 		
 		

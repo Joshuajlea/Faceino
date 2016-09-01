@@ -2,11 +2,15 @@ package com.FDMGroup.DALinterfaces;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import com.FDMGroup.Entities.User;
 
-public interface UserDAL {
+public interface UserDAL extends UserDetailsService {
 	
 	public User getById(String userId);
 	public List<User> getAll();
 	public boolean addUser(User user);	
+	
+	
 }
