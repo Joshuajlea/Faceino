@@ -19,3 +19,18 @@
 		background-color: grey;
 		color: white;
 }
+
+.topDown{
+	top: 120px	
+}
+
+#oneMessageInChat {
+		margin-top: 5px;
+		padding-top: 10px;
+		padding-left: 12px;
+		border-radius: 20px;
+		width: 300px;
+		border: 1;
+		background-color: grey;
+		color: white;
+	}
