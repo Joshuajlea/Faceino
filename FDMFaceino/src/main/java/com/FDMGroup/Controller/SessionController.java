@@ -27,12 +27,6 @@ public class SessionController {
 		return "homepage";
 	}
 
-	
-	@GetMapping("/login")
-	public String login(){
-		return "loginpage";
-	}
-	
 	@RequestMapping("/redirectHome")
 	public String redirectHome(){
 		return "redirect:/home";
