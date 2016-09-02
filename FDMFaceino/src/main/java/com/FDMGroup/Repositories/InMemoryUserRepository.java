@@ -20,10 +20,12 @@ public class InMemoryUserRepository {
 	
 	private InMemoryUserRepository(){	
 		users.add(new User("martin.mrowiec@fdmgroup.com", "12345", "", Arrays.asList("USER", "ADMIN")));
-		users.get(0).setActive(true);
 		users.add(new User("sebastian.verfers@fdmgroup.com", "12345", "", Arrays.asList("USER", "ADMIN")));
 		users.add(new User("tim.bell@fdmgroup.com", "12345", "", Arrays.asList("USER", "ADMIN")));
 		users.add(new User("joshua.lea@fdmgroup.com", "12345", "", Arrays.asList("USER", "ADMIN")));
+		for(User u : users){
+			u.setActive(true);
+		}
 	}
 	
 	public boolean addUser(User usr){
