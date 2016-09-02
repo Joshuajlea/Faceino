@@ -123,9 +123,9 @@
 	<!-- navigation menu left -->
 	<div id="navigationBar">
 		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation" class="active"><a href="home.html">Home</a></li>
-			<li role="presentation"><a href="profile.html">Profile</a></li>
-			<li role="presentation"><a href="poker.html">Poker</a></li>
+			<li role="presentation" class="active"><a href="temp_content.html" target="iframe_a">Home</a></li>
+			<li role="presentation"><a href="temp_profile.html" target="iframe_a">Profile</a></li>
+			<li role="presentation"><a href="temp_poker.html" target="iframe_a">Poker</a></li>
 			<li role="presentation"><a href="/logout">Logout</a></li>
 		</ul>
 	</div>
@@ -138,7 +138,8 @@
 
 			<div style="background-color: green" class="col-md-7 topDown"
 				id="contentPage">
-				<object type="text/html" data="content.html"></object>
+				<iframe src="temp_content.html" name="iframe_a" style="width: 90%; height: 300px"
+marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0"></iframe>
 			</div>
 
 			<div style="background-color:" class="col-md-4 topDown" id="chatPage">
