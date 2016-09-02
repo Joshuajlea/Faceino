@@ -8,6 +8,12 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
+
+<script   src="https://code.jquery.com/jquery-3.1.0.slim.min.js"   integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8="   crossorigin="anonymous"></script>
+
+<script type="text/javascript"
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="customstyle.css">
 
 <script type="text/javascript"
@@ -132,7 +138,7 @@
 		</ul>
 	</div>
 
-<!--content and chat divs-->
+	<!--content and chat divs-->
 
 	<div class="container-fluid">
 		<div class="row">
@@ -145,27 +151,65 @@
 
 			<div class="col-md-4 topDown" id="chatPage">
 
-				<ul class="nav nav-tabs" id="myTabs">
-					<li class="active"><a href="#public" data-toggle="tab">public</a></li>
-					<li><a href="#private1" data-toggle="tab">private 1</a></li>
-					<li><a href="#private2" data-toggle="tab">private 2</a></li>
-				</ul>
+				<div>
+
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active">
+							<a href="#global"	aria-controls="global" role="tab" data-toggle="tab">Global</a>
+						</li>
+						<li role="presentation">
+							<a href="#group1" aria-controls="group1" role="tab" data-toggle="tab">Group 1</a>
+						</li>
+						<li role="presentation">
+							<a href="#group2" aria-controls="group2" role="tab" data-toggle="tab">Group 2</a>
+						</li>
+						<li role="presentation">
+							<a href="#group3" aria-controls="group3" role="tab" data-toggle="tab">Group 3</a>
+						</li>
+						<li role="presentation">
+							<a href="#group4" aria-controls="group4" role="tab" data-toggle="tab">Group 4</a>
+						</li>
+						<li role="presentation">
+							<a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a>
+						</li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="global">
+							<br>
+						
+							<div id="conversationDiv">
+								<form action="javascript:sendChatMessage()">
+									<input type="text" id="message" placeholder="message"
+										autocomplete="off" /> <input id="sendMessage" type="submit"
+										value="send" />
+	
+									<div style="height: 512px; overflow: auto">
+										<p id="response"></p>
+									</div>
+								</form>
+							</div>
+						
+						</div>
+						<div role="tabpanel" class="tab-pane" id="group1">The Group Chat 1 would be shown here</div>
+						<div role="tabpanel" class="tab-pane" id="group2">The Group Chat 2 would be shown here</div>
+						<div role="tabpanel" class="tab-pane" id="group3">The Group Chat 3 would be shown here</div>
+						<div role="tabpanel" class="tab-pane" id="group4">The Group Chat 4 would be shown here</div>
+						<div role="tabpanel" class="tab-pane" id="table">You will be able to see the table chat here</div>
+					</div>
+
+				</div>
 
 				<br>
 				<div class="tab-content">
 					<div class="tab-pane active" id="home">
-						<div id="conversationDiv">
-							<form action="javascript:sendChatMessage()">
-								<input type="text" id="message" placeholder="message" autocomplete="off"/> 
-								<input id="sendMessage" type="submit" value="send" />
-									
-									<div style="height: 512px;overflow:auto">
-										<p id="response"></p>
-									</div>
-							</form>
-						</div>
+						
 					</div>
-					<div class="tab-pane" id="private1">SAfadsf asdf</div>
+					<div class="tab-pane" id="private1">
+						<div>SAfadsf asdf</div>
+					</div>
 					<div class="tab-pane" id="private2">private 2 here</div>
 				</div>
 			</div>
