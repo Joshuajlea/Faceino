@@ -10,28 +10,30 @@ import com.FDMGroup.Services.ConversationDataService;
 public class ConversationDataServiceImpl implements ConversationDataService {
 	
 	private ConversationDAL conversationDAL = new ConversationDALImp();
+	
+	@Override
+	public Conversation getConversationById(String conversationId) {
+		return conversationDAL.getById(conversationId);
+	}
 
 	@Override
 	public void addReceiverToConversation(User receiver, String conversationId) {
 		conversationDAL.getById(conversationId).addReceiver(receiver);
-		
 	}
 
 	@Override
 	public void addMessageToConversation(Message message, String conversationId) {
 		conversationDAL.getById(conversationId).addMessage(message);
-		
 	}
 
 	@Override
-	public void createNewConversation(Conversation con) {
-		conversationDAL.addConversation(con);
+	public boolean createNewConversation(Conversation con) {
+		return conversationDAL.addConversation(con);
 	}
 
 	@Override
 	public void deleteConversationById(String conversationId) {
-		
-		
+		// TODO
 	}
 
 }
