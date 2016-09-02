@@ -1,4 +1,4 @@
-/*package com.FDMGroup.Verification;
+package com.FDMGroup.Verification;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import com.FDMGroup.Entities.User;
+
+// This should build the individual token that will be sent to the user. 
 
 @Entity
 public class VerificationToken {
@@ -40,7 +42,7 @@ public class VerificationToken {
         this.token = token;
         this.user = user;
         this.expiryDate = calculateExpiryDate(EXPIRATION);
-        this.verified = false;
+        this.setVerified(false);
     }
      
     private Date calculateExpiryDate(int expiryTimeInMinutes) {
@@ -76,6 +78,12 @@ public class VerificationToken {
 	public static int getExpiration() {
 		return EXPIRATION;
 	}
+	public boolean isVerified() {
+		return verified;
+	}
+	public void setVerified(boolean verified) {
+		this.verified = verified;
+	}
      
   
-}*/
+}
