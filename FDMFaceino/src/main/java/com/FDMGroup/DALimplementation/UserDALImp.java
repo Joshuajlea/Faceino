@@ -1,5 +1,6 @@
 package com.FDMGroup.DALimplementation;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,7 +34,17 @@ public class UserDALImp implements UserDAL {
 	@Override
 	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
 		User u = getByLoginName(arg0);
-		return new org.springframework.security.core.userdetails.User(u.getLoginName(),u.getPassword(),Arrays.asList(new SimpleGrantedAuthority("USER")));
+		List<SimpleGrantedAuthority> authoritiesList = new ArrayList<SimpleGrantedAuthority>();
+		for(String role : u.getRoles()){
+			authoritiesList.add(new SimpleGrantedAuthority(role));
+		}
+		return new org.springframework.security.core.userdetails.User(	u.getLoginName(),
+																		u.getPassword(),
+																		u.isActive(),
+																		true,
+																		true,
+																		!u.isBlocked(),
+																		authoritiesList);
 	}
 
 }
