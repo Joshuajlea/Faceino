@@ -2,6 +2,7 @@ package com.FDMGroup.DALimplementation;
 
 import java.util.List;
 
+import com.FDMGroup.Repositories.InMemoryConversationRepository;
 import com.FDMGroup.Repositories.InMemoryMessageRepository;
 import com.FDMGroup.DALinterfaces.MessageDAL;
 import com.FDMGroup.Entities.Message;
@@ -19,7 +20,8 @@ public class MessageDALimp implements MessageDAL {
 	}
 
 	@Override
-	public boolean addMessage(Message msg) {
+	public boolean addMessage(Message msg, String conversationId) {
+		InMemoryConversationRepository.getInstance().getById(conversationId).addMessage(msg);
 		return InMemoryMessageRepository.getInstance().addMessage(msg);
 	}
 

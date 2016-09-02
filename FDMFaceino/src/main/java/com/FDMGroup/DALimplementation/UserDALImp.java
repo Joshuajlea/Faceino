@@ -1,5 +1,6 @@
 package com.FDMGroup.DALimplementation;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.FDMGroup.DALinterfaces.UserDAL;
+import com.FDMGroup.Entities.Conversation;
+import com.FDMGroup.Entities.Message;
 import com.FDMGroup.Entities.User;
 import com.FDMGroup.Repositories.InMemoryUserRepository;
 
@@ -36,4 +39,14 @@ public class UserDALImp implements UserDAL {
 		return new org.springframework.security.core.userdetails.User(u.getLoginName(),u.getPassword(),Arrays.asList(new SimpleGrantedAuthority("USER")));
 	}
 
+	public List<Message> getMessagesForConversationForUser(User user, Conversation con){
+		for (Conversation tempCon : user.getConversations())
+			if(tempCon.equals(con))
+				return tempCon.getMessages();
+		
+		System.out.println("The user is not part of this conversation");
+		
+		return new ArrayList<Message>();
+	}
+	
 }

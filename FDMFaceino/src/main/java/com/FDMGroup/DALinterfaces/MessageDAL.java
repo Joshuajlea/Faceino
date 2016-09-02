@@ -8,6 +8,6 @@ public interface MessageDAL {
 	
 	public Message getById(String messageId);
 	public List<Message> getAll();
-	public boolean addMessage(Message msg);
+	public boolean addMessage(Message msg, String conversationId);
 	
 }

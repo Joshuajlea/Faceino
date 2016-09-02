@@ -11,7 +11,7 @@ public class InMemoryMessageRepository {
 	private static InMemoryMessageRepository INSTANCE;
 	
 	public static synchronized InMemoryMessageRepository getInstance(){
-		if(INSTANCE != null)
+		if(INSTANCE == null)
 			INSTANCE = new InMemoryMessageRepository();
 		
 		return INSTANCE;
