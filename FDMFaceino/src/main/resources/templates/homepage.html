@@ -12,15 +12,9 @@
 
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.min.js"></script>
-
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.min.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	
 <script type="text/javascript">
 	var stompClient = null;
 
@@ -51,32 +45,40 @@
 		}));
 	}
 
-		
 	function showMessage(message) {
-        var response = document.getElementById('response');
-        
-        var boldName = document.createElement('b');
-        var name = message.sender.split('@')[0];
-        boldName.appendChild(document.createTextNode(name));
+		var response = document.getElementById('response');
 
-        var cursivContent = document.createElement('i');
-        cursivContent.appendChild(document.createTextNode(message.content));            
+		var boldName = document.createElement('b');
+		var name = message.sender.split('@')[0];
+		boldName.appendChild(document.createTextNode(name));
 
-        var p = document.createElement('div');
-        p.id = "oneMessageInChat";
-        p.style.wordWrap = 'break-word';
-        p.appendChild(boldName);
-        p.appendChild(document.createTextNode(' : '));
-        p.appendChild(cursivContent);
-        p.appendChild(document.createElement('br'));
-        p.appendChild(document.createElement('br'));
-        response.insertBefore(p, response.childNodes[0]);
-        var content = document.getElementById('message');
-        content.value = '';
-        content.focus();        
-    }
-	
+		var cursivContent = document.createElement('i');
+		cursivContent.appendChild(document.createTextNode(message.content));
+
+		var p = document.createElement('div');
+		p.id = "oneMessageInChat";
+		p.style.wordWrap = 'break-word';
+		p.appendChild(boldName);
+		p.appendChild(document.createTextNode(' : '));
+		p.appendChild(cursivContent);
+		p.appendChild(document.createElement('br'));
+		p.appendChild(document.createElement('br'));
+		response.insertBefore(p, response.childNodes[0]);
+		var content = document.getElementById('message');
+		content.value = '';
+		content.focus();
+	}
+
+	$('#myTabs').bind('show', function(e) {
+		paneID = $(e.target).attr('href');
+		src = $(paneID).attr('data-src');
+		// if the iframe hasn't already been loaded once
+		if ($(paneID + " iframe").attr("src") == "") {
+			$(paneID + " iframe").attr("src", src);
+		}
+	});
 </script>
+
 
 </head>
 
@@ -123,9 +125,9 @@
 	<!-- navigation menu left -->
 	<div id="navigationBar">
 		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation" class="active"><a href="temp_content.html" target="iframe_a">Home</a></li>
-			<li role="presentation"><a href="temp_profile.html" target="iframe_a">Profile</a></li>
-			<li role="presentation"><a href="temp_poker.html" target="iframe_a">Poker</a></li>
+			<li role="presentation" class="active"><a href="home.html">Home</a></li>
+			<li role="presentation"><a href="profile.html">Profile</a></li>
+			<li role="presentation"><a href="poker.html">Poker</a></li>
 			<li role="presentation"><a href="/logout">Logout</a></li>
 		</ul>
 	</div>
@@ -136,26 +138,39 @@
 
 			<div class="col-md-1"></div>
 
-			<div style="background-color: green" class="col-md-7 topDown"
-				id="contentPage">
-				<iframe src="temp_content.html" name="iframe_a" style="width: 90%; height: 300px"
-marginwidth="0" marginheight="0" frameborder="0" vspace="0" hspace="0"></iframe>
+			<div class="col-md-7 topDown" id="contentPage">
+				<object type="text/html" data="content.html"></object>
 			</div>
 
-			<div style="background-color:" class="col-md-4 topDown" id="chatPage">
-				<div id="conversationDiv">
-					<form action="javascript:sendChatMessage()">
-						<label>Message:</label>
-						<input type="text" id="message"
-							placeholder="message" /> 
-						<input id="sendMessage" type="submit" value="send" />
-						<p id="response"></p>
-					</form>
+			<div class="col-md-4 topDown" id="chatPage">
+
+				<ul class="nav nav-tabs" id="myTabs">
+					<li class="active"><a href="#public" data-toggle="tab">public</a></li>
+					<li><a href="#private1" data-toggle="tab">private 1</a></li>
+					<li><a href="#private2" data-toggle="tab">private 2</a></li>
+				</ul>
+
+				<br>
+				<div class="tab-content">
+					<div class="tab-pane active" id="home">
+						<div id="conversationDiv">
+							<form action="javascript:sendChatMessage()">
+								<input type="text" id="message" placeholder="message" /> <input
+									id="sendMessage" type="submit" value="send" />
+									
+									<div style="height: 512px;overflow:auto">
+										<p id="response"></p>
+									</div>
+							</form>
+						</div>
+					</div>
+					<div class="tab-pane" id="private1">SAfadsf asdf</div>
+					<div class="tab-pane" id="private2">private 2 here</div>
 				</div>
-				<div style="visibility: hidden" id="hiddenUser">{{userData.loginName}}</div>
 			</div>
 		</div>
 	</div>
+	<div style="visibility: hidden" id="hiddenUser">{{userData.loginName}}</div>
 
 </body>
 
