@@ -78,6 +78,7 @@ public class User {
 		return roles;
 	}
 
+	// verification boolean
 	@Column(name = "enabled")
     private boolean enabled;
      
@@ -85,4 +86,8 @@ public class User {
         super();
         this.enabled=false;
     }
+    /////////////////////////////
+	public String getEmail() {
+		return null;
+	}
 }

@@ -3,9 +3,12 @@ package com.FDMGroup.Controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,8 +35,8 @@ public class VerificatioController {
 	    }
 	    try {
 	        String appUrl = request.getContextPath();
-	        eventPublisher.publishEvent(new OnRegistrationCompleteEvent
-	          (registered, request.getLocale(), appUrl));
+	        eventPublisher(publishEvent(new OnRegistrationCompleteEvent
+	          (registered, request.getLocale(), appUrl)));
 	    } catch (Exception me) {
 	        return new ModelAndView("emailError", "user", accountDto);
 	    }
@@ -41,6 +44,5 @@ public class VerificatioController {
 	}
 
 	private User createUserAccount(User accountDto) {
-		// TODO Auto-generated method stub
 		return null;
-	}
+	}}
