@@ -31,5 +31,4 @@ public class SessionController {
 	public String redirectHome(){
 		return "redirect:/home";
 	}
-	
 }

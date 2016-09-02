@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="customstyle.css">
+	crossorigin="anonymous"/>
+<link rel="stylesheet" type="text/css" href="customstyle.css"/>
 
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.min.js"></script>
@@ -106,7 +105,7 @@
 						<form class="navbar-form" id="searchForm">
 							<div class="form-group">
 								<input type="text" class="form-control"
-									placeholder="Search member">
+									placeholder="Search member"/>
 							</div>
 							<button type="submit" class="btn btn-default">Submit</button>
 						</form>
@@ -115,7 +114,7 @@
 							width="60px"
 							src="C:\Users\Public\Pictures\Sample Pictures\Koala.jpg" />
 					</a></li>
-					<li><a href="profile.html"><h2>{{userData.loginName}}</h2></a></li>
+					<li><a href="profile.html"><h2 th:text="${session.userData.loginName}">User</h2></a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -140,7 +139,7 @@
 			<div class="col-md-1"></div>
 
 			<div class="col-md-7 topDown" id="contentPage">
-				<object type="text/html" data="content.html"></object>
+				<div th:replace="temp_content::logo"></div>
 			</div>
 
 			<div class="col-md-4 topDown" id="chatPage">
@@ -151,7 +150,7 @@
 					<li><a href="#private2" data-toggle="tab">private 2</a></li>
 				</ul>
 
-				<br>
+				<br/>
 				<div class="tab-content">
 					<div class="tab-pane active" id="home">
 						<div id="conversationDiv">
@@ -171,7 +170,7 @@
 			</div>
 		</div>
 	</div>
-	<div style="visibility: hidden" id="hiddenUser">{{userData.loginName}}</div>
+	<div style="visibility: hidden" id="hiddenUser" th:text="${session.userData.loginName}">John Doe</div>
 
 </body>
 
