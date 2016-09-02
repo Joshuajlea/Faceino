@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+
 
 <head>
 <link rel="stylesheet"
@@ -112,7 +112,7 @@
 						<form class="navbar-form" id="searchForm">
 							<div class="form-group">
 								<input type="text" class="form-control"
-									placeholder="Search member">
+									placeholder="Search member"/>
 							</div>
 							<button type="submit" class="btn btn-default">Submit</button>
 						</form>
@@ -121,7 +121,7 @@
 							width="60px"
 							src="C:\Users\Public\Pictures\Sample Pictures\Koala.jpg" />
 					</a></li>
-					<li><a href="profile.html"><h2>{{userData.loginName}}</h2></a></li>
+					<li><a href="profile.html"><h2 th:text="${session.userData.loginName}">User</h2></a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -146,7 +146,7 @@
 			<div class="col-md-1"></div>
 
 			<div class="col-md-7 topDown" id="contentPage">
-				<object type="text/html" data="content.html"></object>
+				<div th:replace="temp_content::logo"></div>
 			</div>
 
 			<div class="col-md-4 topDown" id="chatPage">
@@ -202,7 +202,7 @@
 
 				</div>
 
-				<br>
+				<br/>
 				<div class="tab-content">
 					<div class="tab-pane active" id="home">
 						
@@ -215,7 +215,7 @@
 			</div>
 		</div>
 	</div>
-	<div style="visibility: hidden" id="hiddenUser">{{userData.loginName}}</div>
+	<div style="visibility: hidden" id="hiddenUser" th:text="${session.userData.loginName}">John Doe</div>
 
 </body>
 
