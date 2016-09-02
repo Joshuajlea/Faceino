@@ -43,6 +43,9 @@
 			'sender' : sender,
 			'content' : message
 		}));
+		var content = document.getElementById('message');
+		content.value = '';
+		content.focus();
 	}
 
 	function showMessage(message) {
@@ -64,9 +67,6 @@
 		p.appendChild(document.createElement('br'));
 		p.appendChild(document.createElement('br'));
 		response.insertBefore(p, response.childNodes[0]);
-		var content = document.getElementById('message');
-		content.value = '';
-		content.focus();
 	}
 
 	$('#myTabs').bind('show', function(e) {
@@ -132,6 +132,7 @@
 		</ul>
 	</div>
 
+<!--content and chat divs-->
 
 	<div class="container-fluid">
 		<div class="row">
@@ -155,8 +156,8 @@
 					<div class="tab-pane active" id="home">
 						<div id="conversationDiv">
 							<form action="javascript:sendChatMessage()">
-								<input type="text" id="message" placeholder="message" /> <input
-									id="sendMessage" type="submit" value="send" />
+								<input type="text" id="message" placeholder="message" autocomplete="off"/> 
+								<input id="sendMessage" type="submit" value="send" />
 									
 									<div style="height: 512px;overflow:auto">
 										<p id="response"></p>
