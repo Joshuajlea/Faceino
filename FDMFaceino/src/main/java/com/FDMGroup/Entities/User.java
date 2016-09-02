@@ -2,6 +2,8 @@ package com.FDMGroup.Entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
+
 public class User {
 	
 	private String loginName, password, picReference;
@@ -18,6 +20,8 @@ public class User {
 		this.picReference = picReference;
 		this.balance = 1000;
 		this.roles = roles;
+		
+		
 	}
 	
 	public boolean addConversation(Conversation conversation){
@@ -74,5 +78,16 @@ public class User {
 		return roles;
 	}
 
-
+	// verification boolean
+	@Column(name = "enabled")
+    private boolean enabled;
+     
+    public User() {
+        super();
+        this.enabled=false;
+    }
+    /////////////////////////////
+	public String getEmail() {
+		return null;
+	}
 }
