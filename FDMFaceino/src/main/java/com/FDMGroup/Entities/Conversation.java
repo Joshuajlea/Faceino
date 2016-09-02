@@ -11,42 +11,30 @@ public class Conversation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String conversationId;
-	private List<String> messageIds;
-	private List<String> receiverNames;
+	private List<Message> messages;
+	private List<User> receivers;
 	
 	public Conversation() {
 	}
 	
 	public boolean addMessage(Message message){
-		return messageIds.add(message.getMessageId());
-	}
-	
-	public boolean addMessage(String messageId){
-		return messageIds.add(messageId);
+		return messages.add(message);
 	}
 	
 	public boolean addReceiver(User user){
-		return receiverNames.add(user.getLoginName());
-	}
-	
-	public boolean addReceiver(String loginName){
-		return receiverNames.add(loginName);
+		return receivers.add(user);
 	}
 
-	public List<String> getMessageIds() {
-		return messageIds;
+	public List<Message> getMessages() {
+		return messages;
 	}
 
-	public void setMessageIds(List<String> messageIds) {
-		this.messageIds = messageIds;
+	public List<User> getReceivers() {
+		return receivers;
 	}
 
-	public List<String> getReceiverNames() {
-		return receiverNames;
-	}
-
-	public void setReceiverNames(List<String> receiverNames) {
-		this.receiverNames = receiverNames;
+	public void setReceivers(List<User> receivers) {
+		this.receivers = receivers;
 	}
 
 	public String getConversationId() {

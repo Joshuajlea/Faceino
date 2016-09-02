@@ -8,7 +8,7 @@ public class User {
 	
 	private String loginName, password, picReference;
 	private int balance;
-	private List<String> conversationIds;
+	private List<Conversation> conversations;
 	private List<String> messageIds;
 	private boolean active,
 					blocked;
@@ -25,11 +25,7 @@ public class User {
 	}
 	
 	public boolean addConversation(Conversation conversation){
-		return conversationIds.add(conversation.getConversationId());
-	}
-	
-	public boolean addConversation(String conversationId){
-		return conversationIds.add(conversationId);
+		return conversations.add(conversation);
 	}
 	
 	public boolean addContent(String messageId){
@@ -55,8 +51,8 @@ public class User {
 	public String getPicReference() {
 		return picReference;
 	}
-	public List<String> getConversationIds() {
-		return conversationIds;
+	public List<Conversation> getConversations() {
+		return conversations;
 	}
 	public List<String> getMessageIds() {
 		return messageIds;
@@ -72,8 +68,7 @@ public class User {
 	}
 	public void setBlocked(boolean blocked) {
 		this.blocked = blocked;
-	}
-	
+	}	
 	public List<String> getRoles() {
 		return roles;
 	}
