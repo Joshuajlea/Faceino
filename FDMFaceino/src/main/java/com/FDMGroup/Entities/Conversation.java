@@ -12,7 +12,7 @@ public class Conversation {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String conversationId;
 	private List<Message> messages;
-	private List<String> receiverNames;
+	private List<User> receivers;
 	
 	public Conversation() {
 	}
@@ -22,23 +22,19 @@ public class Conversation {
 	}
 	
 	public boolean addReceiver(User user){
-		return receiverNames.add(user.getLoginName());
-	}
-	
-	public boolean addReceiver(String loginName){
-		return receiverNames.add(loginName);
+		return receivers.add(user);
 	}
 
 	public List<Message> getMessages() {
 		return messages;
 	}
 
-	public List<String> getReceiverNames() {
-		return receiverNames;
+	public List<User> getReceivers() {
+		return receivers;
 	}
 
-	public void setReceiverNames(List<String> receiverNames) {
-		this.receiverNames = receiverNames;
+	public void setReceivers(List<User> receivers) {
+		this.receivers = receivers;
 	}
 
 	public String getConversationId() {
