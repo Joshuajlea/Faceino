@@ -9,7 +9,7 @@ public class User {
 	private String loginName, password, picReference;
 	private int balance;
 	private List<Conversation> conversations;
-	private List<String> messageIds;
+	private List<Message> content;
 	private boolean active,
 					blocked;
 	private List<String> roles;
@@ -28,12 +28,8 @@ public class User {
 		return conversations.add(conversation);
 	}
 	
-	public boolean addContent(String messageId){
-		return messageIds.add(messageId);
-	}
-	
 	public boolean addContent(Message message){
-		return messageIds.add(message.getMessageId());
+		return content.add(message);
 	}
 	
 	public int getBalance() {
@@ -54,8 +50,8 @@ public class User {
 	public List<Conversation> getConversations() {
 		return conversations;
 	}
-	public List<String> getMessageIds() {
-		return messageIds;
+	public List<Message> getContent() {
+		return content;
 	}
 	public boolean isActive() {
 		return active;
