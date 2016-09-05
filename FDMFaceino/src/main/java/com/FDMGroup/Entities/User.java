@@ -20,8 +20,6 @@ public class User {
 		this.picReference = picReference;
 		this.balance = 1000;
 		this.roles = roles;
-		
-		
 	}
 	
 	public boolean addConversation(Conversation conversation){

@@ -4,7 +4,7 @@ public class ConversationMessage extends Message {
 	
 	private String conversationId;
 
-	public ConversationMessage(User sender, String content, String conversationId) {
+	public ConversationMessage(String sender, String content, String conversationId) {
 		super(sender, content);
 		this.conversationId = conversationId;
 	}

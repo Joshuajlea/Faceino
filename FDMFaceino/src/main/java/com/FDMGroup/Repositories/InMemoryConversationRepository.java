@@ -24,7 +24,7 @@ public class InMemoryConversationRepository {
 		// default conversation only for testing
 		List<User> receiver = InMemoryUserRepository.getInstance().getAll();
 		Conversation con = new Conversation(receiver);
-		con.addMessage(new Message(InMemoryUserRepository.getInstance().getByLoginName("sebastian.verfers@fdmgroup.com"), "das ist ein test"));
+		con.addMessage(new Message("sebastian.verfers@fdmgroup.com", "das ist ein test"));
 		conversations.add(con);
 	}
 	
