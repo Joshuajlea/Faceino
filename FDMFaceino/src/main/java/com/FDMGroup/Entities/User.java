@@ -67,15 +67,15 @@ public class User {
 		return roles;
 	}
 
-	// verification boolean
+	/*// verification boolean
 	@Column(name = "enabled")
     private boolean enabled;
      
-    public User() {
+    public User() {						////// Made redundant
         super();
         this.enabled=false;
     }
-    /////////////////////////////
+    ///////////////////////////// */
 	public String getEmail() {
 		return null;
 	}
