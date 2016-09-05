@@ -14,13 +14,12 @@ import com.FDMGroup.Services.Implementation.LoginDataServiceImpl;
 import com.FDMGroup.Services.Implementation.RegistrationDataServiceImpl;
 
 @Controller
-@RequestMapping("/admin")
 public class AdminController {
 
 	LoginDataService loginDataService = new LoginDataServiceImpl();	
 	RegistrationDataService registerDataService = new RegistrationDataServiceImpl();
 	
-	@GetMapping("/interface")
+	@GetMapping("/admin")
 	public String enableUsers(HttpSession session, Model model, Authentication auth){
 		
 		session.setAttribute("userData", loginDataService.getUserDataFromDatabaseByName(auth.getName()));
