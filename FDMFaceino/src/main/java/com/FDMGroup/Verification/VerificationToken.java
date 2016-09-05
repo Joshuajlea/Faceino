@@ -1,4 +1,4 @@
-package com.FDMGroup.Verification;
+/*package com.FDMGroup.Verification;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -16,6 +16,8 @@ import com.FDMGroup.Entities.User;
 
 // This should build the individual token that will be sent to the user. 
 
+//Made redundant by the lack of email server //
+
 @Entity
 public class VerificationToken {
     private static final int EXPIRATION = 60 * 24;
@@ -30,7 +32,7 @@ public class VerificationToken {
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
      
-    private Date expiryDate;
+    private static Date expiryDate;
 
 	private boolean verified;
  
@@ -69,7 +71,7 @@ public class VerificationToken {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Date getExpiryDate() {
+	public static Date getExpiryDate() {
 		return expiryDate;
 	}
 	public void setExpiryDate(Date expiryDate) {
@@ -86,4 +88,4 @@ public class VerificationToken {
 	}
      
   
-}
+}*/

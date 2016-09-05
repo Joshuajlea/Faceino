@@ -6,7 +6,9 @@ import javax.persistence.Column;
 
 public class User {
 	
-	private String loginName, password, picReference;
+	private static String loginName;
+	private String password;
+	private String picReference;
 	private int balance;
 	private List<String> conversationIds;
 	private List<String> messageIds;
@@ -46,7 +48,7 @@ public class User {
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
-	public String getLoginName() {
+	public static String getLoginName() {
 		return loginName;
 	}
 	public String getPassword() {

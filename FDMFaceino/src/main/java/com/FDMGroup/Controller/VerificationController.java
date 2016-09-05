@@ -1,5 +1,7 @@
 package com.FDMGroup.Controller;
 
+import java.util.Calendar;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.FDMGroup.Entities.User;
 import com.FDMGroup.Verification.OnRegistrationCompleteEvent;
 
-public class VerificatioController {
-	@Autowired
-	ApplicationEventPublisher eventPublisher
+public class VerificationController {
+
+	
+	// JL 02/09/16
+	//This should deal with the registration page that handles the token and URL that the user is sent 
 	 
 	@RequestMapping(value = "/user/registration", method = RequestMethod.POST)
 	public ModelAndView registerUserAccount(
@@ -29,7 +33,7 @@ public class VerificatioController {
 	        return new ModelAndView("registration", "user", accountDto);
 	    }
 	     
-	    User registered = createUserAccount(accountDto);
+	    User registered = addUser(accountDto);
 	    if (registered == null) {
 	        result.rejectValue("email", "message.regError");
 	    }
@@ -43,6 +47,33 @@ public class VerificatioController {
 	    return new ModelAndView("successRegister", "user", accountDto);
 	}
 
-	private User createUserAccount(User accountDto) {
+	private User addUser(User accountDto) {
+		 //TODO Auto-generated method stub
 		return null;
-	}}
+	}
+
+	private void eventPublisher(Object publishEvent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private Object publishEvent(OnRegistrationCompleteEvent onRegistrationCompleteEvent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public com.FDMGroup.Entities.User getUser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Calendar getExpiryDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	}
+
+
+

@@ -3,6 +3,7 @@ package com.FDMGroup.Verification;
 import java.util.UUID;
 
 import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
 import org.apache.commons.mail.SimpleEmail;
 import org.codehaus.groovy.control.messages.SimpleMessage;
 import org.codehaus.groovy.tools.shell.util.MessageSource;
@@ -12,11 +13,14 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 import com.FDMGroup.DALinterfaces.UserDAL;
+import com.FDMGroup.Entities.User;
+
+import services.Userservices;
 
 @Component
 public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {
     @Autowired
-    private MessageSource messages;
+    private static MessageSource messages;
     @Autowired
     private JavaMailSender mailSender;
 	
@@ -31,7 +35,7 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     private void confirmRegistration(OnRegistrationCompleteEvent event) {
         com.FDMGroup.Entities.User user = event.getUser();
         String token = UUID.randomUUID().toString();
-        services.createVerificationToken(user, token);
+        Userservices.createVerificationToken(user, token);
          
         String recipientAddress = user.getLoginName();
         String subject = "Registration Confirmation";
@@ -49,15 +53,15 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     }
         public static final void sendSimpleMail() throws Exception {
             Email email = new SimpleEmail();
-            email.setSmtpPort(587);
-            email.setAuthenticator(new DefaultAuthenticator("your gmail username",
-                    "your gmail password"));
+            email.setSmtpPort(25);
+            email.setAuthenticator(new DefaultAuthenticator("joshua.lea@fdmgroup.com",
+                    "put password here"));
             email.setDebug(false);
-            email.setHostName("smtp.gmail.com");
-            email.setFrom("me@gmail.com");
-            email.setSubject("Hi");
-            email.setMsg("This is a test mail ... :-)");
-            email.addTo("you@gmail.com");
+            email.setHostName("outlook.fdmgroup.local");
+            email.setFrom("joshua.lea@fdmgroup.com");
+            email.setSubject("Registration Confirmation");
+            email.setMsg(messages.getMessage("message.regSucc"));
+            email.addTo(User.getLoginName());
             email.setTLS(true);
             email.send();
             System.out.println("Mail sent!");
