@@ -7,19 +7,21 @@ import com.FDMGroup.Entities.Conversation;
 import com.FDMGroup.Entities.User;
 import com.FDMGroup.Repositories.InMemoryConversationRepository;
 import com.FDMGroup.Repositories.InMemoryUserRepository;
+import com.jayway.jsonpath.Predicate;
 
 public class ConversationDALImp implements ConversationDAL {
 	
+	//retrieve
 	@Override
 	public Conversation getById(String conversationId) {
 		return InMemoryConversationRepository.getInstance().getById(conversationId);
 	}
-
 	@Override
 	public List<Conversation> getAll() {
 		return InMemoryConversationRepository.getInstance().getAll();
 	}
-
+	
+	//create
 	@Override
 	public boolean addConversation(Conversation con) {
 		

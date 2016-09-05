@@ -14,6 +14,12 @@ public class Conversation {
 	private List<Message> messages;
 	private List<User> receivers;
 	
+	
+	
+	public Conversation(List<User> receivers) {
+		this.receivers = receivers;
+	}
+
 	public Conversation() {
 	}
 	
