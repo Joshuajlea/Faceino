@@ -104,6 +104,6 @@ public class RegistrationController {
 	    user.setEnabled(true); 
 	    service.saveRegisteredUser(user); 
 	    return "redirect:/login.html?lang=" + request.getLocale().getLanguage(); 
-	}
+	}	
 }
 */

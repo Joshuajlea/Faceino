@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.FDMGroup.Services.LoginDataService;
 import com.FDMGroup.Services.RegistrationDataService;
@@ -15,22 +14,22 @@ import com.FDMGroup.Services.Implementation.LoginDataServiceImpl;
 import com.FDMGroup.Services.Implementation.RegistrationDataServiceImpl;
 
 @Controller
-@SessionAttributes
-public class SessionController {
+@RequestMapping("/admin")
+public class AdminController {
+
+	LoginDataService loginDataService = new LoginDataServiceImpl();	
+	RegistrationDataService registerDataService = new RegistrationDataServiceImpl();
 	
-	LoginDataService loginDataService = new LoginDataServiceImpl();
-	
-	@RequestMapping("/home")
-	public String greetUser(HttpSession session, Model model, Authentication auth){
+	@GetMapping("/interface")
+	public String enableUsers(HttpSession session, Model model, Authentication auth){
 		
-		session.setMaxInactiveInterval(600);
 		session.setAttribute("userData", loginDataService.getUserDataFromDatabaseByName(auth.getName()));
 		
-		return "homepage";
+		model.addAttribute("newUsers", registerDataService.getNewUsers());
+		model.addAttribute("activatedUsers", registerDataService.getActivatedUsers());
+		model.addAttribute("blockedUsers", registerDataService.getBlockedUsers());
+		
+		return "admin/adminPage";
 	}
-
-	@RequestMapping("/redirectHome")
-	public String redirectHome(){
-		return "redirect:/home";
-	}
+	
 }

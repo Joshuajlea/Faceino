@@ -21,82 +21,6 @@
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
-<script>
-	var stompClient = null;
-
-	function setConnected(connected) {
-		document.getElementById('conversationDiv').style.visibility = connected ? 'visible'
-				: 'hidden';
-		document.getElementById('response').innerHTML = '';
-	}
-
-	function connect() {
-		var socket = new SockJS('/public');
-		stompClient = Stomp.over(socket);
-		stompClient.connect({}, function(frame) {
-			setConnected(true);
-			console.log('Connected: ' + frame);
-			stompClient.subscribe('/user/queue/messages', function(message) {
-				showMessage(JSON.parse(message.body));
-			});
-		});
-	}
-
-	function sendChatMessage() {
-		var sender = document.getElementById('hiddenUser').innerHTML;
-		var message = document.getElementById('message').value;
-		stompClient.send("/app/public", {}, JSON.stringify({
-			'sender' : sender,
-			'content' : message
-		}));
-		var content = document.getElementById('message');
-		content.value = '';
-		content.focus();
-	}
-
-	function showMessage(message) {
-		var response = document.getElementById('response');
-
-		var boldName = document.createElement('b');
-		var name = message.sender.split('@')[0];
-		boldName.appendChild(document.createTextNode(name));
-
-		var cursivContent = document.createElement('i');
-		cursivContent.appendChild(document.createTextNode(message.content));
-
-		var p = document.createElement('div');
-		p.id = "oneMessageInChat";
-		p.style.wordWrap = 'break-word';
-		p.appendChild(boldName);
-		p.appendChild(document.createTextNode(' : '));
-		p.appendChild(cursivContent);
-		p.appendChild(document.createElement('br'));
-		p.appendChild(document.createElement('br'));
-		response.insertBefore(p, response.childNodes[0]);
-	}
-
-	$('#myTabs').bind('show', function(e) {
-		paneID = $(e.target).attr('href');
-		src = $(paneID).attr('data-src');
-		// if the iframe hasn't already been loaded once
-		if ($(paneID + " iframe").attr("src") == "") {
-			$(paneID + " iframe").attr("src", src);
-		}
-	});
-	
-	function load_home(){
-         document.getElementById("contentPage").innerHTML= document.getElementById("hiddenContent").innerHTML;
-	}
-   
-  	function load_profile(){
-       document.getElementById("contentPage").innerHTML= document.getElementById("hiddenProfile").innerHTML;
-	}
-   
-  	function load_poker(){
-       document.getElementById("contentPage").innerHTML= document.getElementById("hiddenPoker").innerHTML;
-	}
-</script>
-
 </head>
 
 <body onload="connect()">
@@ -142,12 +66,11 @@
 	<!-- navigation menu left -->
 	<div id="navigationBar">
 		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation" class="active"><a href ="#" onclick="load_home()">Home</a></li>
-			<li role="presentation"><a href ="#" onclick="load_profile()">Profile</a></li>
-			<li role="presentation"><a href ="#" onclick="load_poker()">Poker</a></li>
+			<li role="presentation" class="active"><a href="home.html">Home</a></li>
 			<li role="presentation"><a href="/logout">Logout</a></li>
+			<li role="presentation"><a href="/admin/enable">enable Users</a></li>
+			<li role="presentation"><a href="poker.html">all Users</a></li>
 		</ul>
-			<button onclick="load_profile()">Click me</button>
 	</div>
 
 	<!--content and chat divs-->
@@ -158,7 +81,8 @@
 			<div class="col-md-1"></div>
 
 			<div class="col-md-7 topDown" id="contentPage">
-				<div th:replace="temp_content::logo"></div>
+				
+
 			</div>
 
 			<div class="col-md-4 topDown" id="chatPage">
@@ -228,15 +152,7 @@
 		</div>
 	</div>
 	<div style="visibility: hidden" id="hiddenUser" th:text="${session.userData.loginName}">John Doe</div>
-	<div style="visibility: hidden" id="hiddenContent">
-		<div th:replace="temp_content::logo"></div>
-	</div>
-	<div style="visibility: hidden" id="hiddenProfile">
-		<div th:replace="temp_profile::logo"></div>
-	</div>
-	<div style="visibility: hidden" id="hiddenPoker">
-		<div th:replace="temp_poker::logo"></div>
-	</div>
+
 </body>
 
 </html>

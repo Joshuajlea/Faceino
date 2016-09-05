@@ -21,4 +21,19 @@ public class RegistrationDataServiceImpl implements RegistrationDataService{
 		return userDataAcessLayer.addUser(user);
 	}
 
+	@Override
+	public List<User> getNewUsers() {
+		return null;
+	}
+
+	@Override
+	public List<User> getActivatedUsers() {
+		return null;
+	}
+
+	@Override
+	public List<User> getBlockedUsers() {
+		return null;
+	}
+
 }
