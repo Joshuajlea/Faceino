@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.FDMGroup.Services.LoginDataService;
+import com.FDMGroup.Services.RegistrationDataService;
 import com.FDMGroup.Services.Implementation.LoginDataServiceImpl;
+import com.FDMGroup.Services.Implementation.RegistrationDataServiceImpl;
 
 @Controller
 @SessionAttributes

@@ -1,4 +1,4 @@
-package com.FDMGroup.Controller;
+/*package com.FDMGroup.Controller;
 
 import javax.validation.Valid;
 
@@ -45,4 +45,4 @@ public class VerificatioController {
 
 	private User createUserAccount(User accountDto) {
 		return null;
-	}}
+	}}*/

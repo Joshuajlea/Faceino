@@ -21,7 +21,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.thymeleaf.expression.Messages;
 
 import com.FDMGroup.RegisterDAO;
-import com.FDMGroup.Verification.VerificationToken;
+//import com.FDMGroup.Verification.VerificationToken;
 
 @Controller
 @SessionAttributes
@@ -75,7 +75,7 @@ public class RegistrationController {
 		return value;
 	}
 	//JL
-	
+	/*
 	@Autowired
 	private IUserService service;
 	 
@@ -103,4 +103,5 @@ public class RegistrationController {
 	    service.saveRegisteredUser(user); 
 	    return "redirect:/login.html?lang=" + request.getLocale().getLanguage(); 
 	}
+	*/
 }
