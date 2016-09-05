@@ -21,7 +21,7 @@
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
-<script type="text/javascript">
+<script>
 	var stompClient = null;
 
 	function setConnected(connected) {
@@ -83,8 +83,19 @@
 			$(paneID + " iframe").attr("src", src);
 		}
 	});
+	
+	function load_home(){
+         document.getElementById("contentPage").innerHTML= document.getElementById("hiddenContent").innerHTML;
+	}
+   
+  	function load_profile(){
+       document.getElementById("contentPage").innerHTML= document.getElementById("hiddenProfile").innerHTML;
+	}
+   
+  	function load_poker(){
+       document.getElementById("contentPage").innerHTML= document.getElementById("hiddenPoker").innerHTML;
+	}
 </script>
-
 
 </head>
 
@@ -131,11 +142,12 @@
 	<!-- navigation menu left -->
 	<div id="navigationBar">
 		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation" class="active"><a href="home.html">Home</a></li>
-			<li role="presentation"><a href="profile.html">Profile</a></li>
-			<li role="presentation"><a href="poker.html">Poker</a></li>
+			<li role="presentation" class="active"><a href ="#" onclick="load_home()">Home</a></li>
+			<li role="presentation"><a href ="#" onclick="load_profile()">Profile</a></li>
+			<li role="presentation"><a href ="#" onclick="load_poker()">Poker</a></li>
 			<li role="presentation"><a href="/logout">Logout</a></li>
 		</ul>
+			<button onclick="load_profile()">Click me</button>
 	</div>
 
 	<!--content and chat divs-->
@@ -216,7 +228,15 @@
 		</div>
 	</div>
 	<div style="visibility: hidden" id="hiddenUser" th:text="${session.userData.loginName}">John Doe</div>
-
+	<div style="visibility: hidden" id="hiddenContent">
+		<div th:replace="temp_content::logo"></div>
+	</div>
+	<div style="visibility: hidden" id="hiddenProfile">
+		<div th:replace="temp_profile::logo"></div>
+	</div>
+	<div style="visibility: hidden" id="hiddenPoker">
+		<div th:replace="temp_poker::logo"></div>
+	</div>
 </body>
 
 </html>
