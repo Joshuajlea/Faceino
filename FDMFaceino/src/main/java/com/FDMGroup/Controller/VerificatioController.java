@@ -1,4 +1,4 @@
-package com.FDMGroup.Controller;
+/* Fuck you  email verification package com.FDMGroup.Controller;
 
 import javax.validation.Valid;
 
@@ -46,3 +46,5 @@ public class VerificatioController {
 	private User createUserAccount(User accountDto) {
 		return null;
 	}}
+
+*/
