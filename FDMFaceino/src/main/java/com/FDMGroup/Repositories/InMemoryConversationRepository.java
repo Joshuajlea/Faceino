@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.FDMGroup.Entities.Conversation;
+import com.FDMGroup.Entities.Message;
+import com.FDMGroup.Entities.User;
 
 
 public class InMemoryConversationRepository {
@@ -18,7 +20,12 @@ public class InMemoryConversationRepository {
 		return INSTANCE;
 	}	
 	
-	private InMemoryConversationRepository(){		
+	private InMemoryConversationRepository(){	
+		// default conversation only for testing
+		List<User> receiver = InMemoryUserRepository.getInstance().getAll();
+		Conversation con = new Conversation(receiver);
+		con.addMessage(new Message(InMemoryUserRepository.getInstance().getByLoginName("sebastian.verfers@fdmgroup.com"), "das ist ein test"));
+		conversations.add(con);
 	}
 	
 	public boolean addConversation(Conversation con){

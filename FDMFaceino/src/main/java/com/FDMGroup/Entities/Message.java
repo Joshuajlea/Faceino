@@ -11,24 +11,24 @@ public class Message {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String messageId;
-	private String sender;
+	private User sender;
 	private String content;
 	private LocalDateTime time;
 
 	protected Message() {
 	}
 
-	public Message(String sender, String content) {
+	public Message(User sender, String content) {
 		this.sender = sender;
 		this.content = content;
 		this.time = LocalDateTime.now();
 	}
 
-	public String getSender() {
+	public User getSender() {
 		return sender;
 	}
 
-	public void setSender(String sender) {
+	public void setSender(User sender) {
 		this.sender = sender;
 	}
 
