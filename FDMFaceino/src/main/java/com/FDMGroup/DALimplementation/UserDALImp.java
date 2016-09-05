@@ -1,7 +1,9 @@
 package com.FDMGroup.DALimplementation;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -57,5 +59,20 @@ public class UserDALImp implements UserDAL {
 		
 		return new ArrayList<Message>();
 	}
+	//Dal implementation for admin page to be populated with users info 
 	
+	
+	public Collection getNUser() {
+		return getAll().stream().filter(a -> a.isActive() == false).collect(Collectors.toList());
+	}
+
+	public Collection getEUser() {
+		return getAll().stream().filter(a -> a.isActive() == true).collect(Collectors.toList());
+	}
+
+	public Collection getBUser() {
+		return getAll().stream().filter(a -> a.isBlocked() == true).collect(Collectors.toList());
+	}
+
 }
+
