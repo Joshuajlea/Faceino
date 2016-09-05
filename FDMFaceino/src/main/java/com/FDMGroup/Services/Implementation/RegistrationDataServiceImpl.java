@@ -1,5 +1,6 @@
 package com.FDMGroup.Services.Implementation;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.FDMGroup.DALimplementation.UserDALImp;
@@ -23,7 +24,8 @@ public class RegistrationDataServiceImpl implements RegistrationDataService{
 
 	@Override
 	public List<User> getNewUsers() {
-		return null;
+		return Arrays.asList(new User("TEST1", "12345","",Arrays.asList("USER")), 
+							 new User("TEST2", "12345","",Arrays.asList("USER")));
 	}
 
 	@Override

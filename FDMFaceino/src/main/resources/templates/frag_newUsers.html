@@ -6,10 +6,28 @@
        			new User
        			<h2 th:text="${session.userData.loginName}">User</h2>
        			
-       			<th:block th:each="user : ${newUsers}">
-        			<input type="checkbox" th:field="*{testList}" th:value="|${test.name}-${enviro}|" />
-    			</th:block>
-       			       			
+       			
+       			<form th:action="@{/adminNewUser}" method="POST">
+	       			<table>
+	       				<tr>
+	       				<td>User</td>
+	       				<td>Enable</td>
+	       				<td>Block</td>
+	       				</tr>	       			
+		       			<th:block th:each="user : ${newUsers}">
+			       			<tr>
+			       				<td th:text="${user.loginName}"></td>
+			       				<td><input type="checkbox" name="enable" th:value="${user.loginName}"/></td>
+			        			<td><input type="checkbox" name="block" th:value="${user.loginName}"/></td>
+			        		</tr>
+		    			</th:block>
+		    			<tr>
+		    				<td></td>
+		    				<td></td>
+		    				<td><input type="submit" value="Submit"/></td>
+		    			</tr>
+       				</table> 
+	       		</form>			
        		</div>
        </div>
 </body>
