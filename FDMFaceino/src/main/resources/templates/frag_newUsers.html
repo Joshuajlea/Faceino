@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+       <div th:fragment="user" class="container-fluid">
+       		<div class="row text-center">
+       			new User
+       			<h2 th:text="${session.userData.loginName}">User</h2>
+       			
+       			<th:block th:each="user : ${newUsers}">
+        			<input type="checkbox" th:field="*{testList}" th:value="|${test.name}-${enviro}|" />
+    			</th:block>
+       			       			
+       		</div>
+       </div>
+</body>
+</html>
