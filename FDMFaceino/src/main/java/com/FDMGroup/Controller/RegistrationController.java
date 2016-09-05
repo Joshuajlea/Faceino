@@ -20,12 +20,16 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.WebRequest;
 import org.thymeleaf.expression.Messages;
 
+import com.FDMGroup.Entities.Message;
+
+
+import services.Userservices;
+
 import com.FDMGroup.RegisterDAO;
-import com.FDMGroup.Verification.VerificationToken;
 
 @Controller
 @SessionAttributes
-public class RegistrationController {
+public class RegistrationController<IUserService> {
 
 	@GetMapping("/register")
 	public String register(Model model){
@@ -73,10 +77,11 @@ public class RegistrationController {
 			return "registerpage";
 		}
 		return value;
-	}
-	//JL
-	
-	@Autowired
+	}}
+
+	//JL //////////////////////////// On registration this code should set the User Enabled value to true allowing the user to login///////////////
+									// Made redundant by the lack of email server //
+	/*@Autowired
 	private IUserService service;
 	 
 	@RequestMapping(value = "/regitrationConfirm", method = RequestMethod.GET)
@@ -84,23 +89,22 @@ public class RegistrationController {
 	      (WebRequest request, Model model, @RequestParam("token") String token) {
 	    Locale locale = request.getLocale();
 	     
-	    VerificationToken verificationToken = Service.getVerificationToken(token);
+	    VerificationController verificationToken = Userservices.getVerificationToken(token);
 	    if (verificationToken == null) {
-	        String message = Messages.getMessage("auth.message.invalidToken", null, locale);
+	        String message = message.getMessage("auth.message.invalidToken", null, locale);
 	        model.addAttribute("message", message);
 	        return "redirect:/badUser.html?lang=" + locale.getLanguage();
 	    }
 	     
 	    com.FDMGroup.Entities.User user = verificationToken.getUser();
 	    Calendar cal = Calendar.getInstance();
-	    if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
-	        String messageValue = messages.getmessage("auth.message.expired", null, locale)
+	    if ((VerificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
+	        String messageValue = messageValue.getmessage("auth.message.expired", null, locale);
 	        model.addAttribute("message", messageValue);
 	        return "redirect:/badUser.html?lang=" + locale.getLanguage();
 	    } 
 	     
-	    user.setEnabled(true); 
-	    service.saveRegisteredUser(user); 
+	    User.setEnabled(true);  
 	    return "redirect:/login.html?lang=" + request.getLocale().getLanguage(); 
 	}
-}
+} */
