@@ -1,13 +1,18 @@
-package com.FDMGroup.Verification;
+//// Made redundant from removal of email verification\\
 
-import java.util.UUID;
 
-import org.codehaus.groovy.tools.shell.util.MessageSource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationListener;
-import org.springframework.stereotype.Component;
+//package com.FDMGroup.Verification;
+//
+//import java.util.UUID;
+//
+//import org.codehaus.groovy.tools.shell.util.MessageSource;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.context.ApplicationListener;
+//import org.springframework.stereotype.Component;
 
-@Component
+/*
+ * @Component
+
 public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {
     @Autowired
     private IUserService service;
@@ -38,4 +43,5 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
         email.setText(message + " rn" + "http://localhost:8080" + confirmationUrl);
         mailSender.send(email);
     }
-}
+} 
+*/

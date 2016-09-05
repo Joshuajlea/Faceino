@@ -1,6 +1,6 @@
 package com.FDMGroup.Controller;
 
-import java.util.Calendar;
+
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.thymeleaf.expression.Messages;
 
 import com.FDMGroup.RegisterDAO;
-import com.FDMGroup.Verification.VerificationToken;
+
 
 @Controller
 @SessionAttributes
@@ -73,8 +73,10 @@ public class RegistrationController {
 			return "registerpage";
 		}
 		return value;
-	}
-	//JL
+	}}
+	
+	/*
+																//JL\\
 	
 	@Autowired
 	private IUserService service;
@@ -104,3 +106,4 @@ public class RegistrationController {
 	    return "redirect:/login.html?lang=" + request.getLocale().getLanguage(); 
 	}
 }
+*/
