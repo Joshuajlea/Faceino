@@ -1,4 +1,7 @@
-package com.FDMGroup.Verification;
+/* made redundant 
+ * 
+ * package com.FDMGroup.Verification;
+ 
 
 import java.util.UUID;
 
@@ -71,3 +74,4 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     }
 
 
+*/
