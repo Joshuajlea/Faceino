@@ -8,6 +8,10 @@ public class ConversationMessage extends Message {
 		super(sender, content);
 		this.conversationId = conversationId;
 	}
+	
+	public ConversationMessage(){
+		super();
+	}
 
 	public String getConversationId() {
 		return conversationId;

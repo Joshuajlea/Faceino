@@ -1,26 +1,22 @@
 package com.FDMGroup.Entities;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.UUID;
 
 public class Conversation {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String conversationId;
-	private List<Message> messages;
-	private List<User> receivers;
-	
+	private List<Message> messages = new ArrayList<Message>();
+	private List<User> receivers = new ArrayList<User>();	
 	
 	
 	public Conversation(List<User> receivers) {
 		this.receivers = receivers;
+		this.conversationId = UUID.randomUUID().toString();
 	}
 
 	public Conversation() {
+		this.conversationId = UUID.randomUUID().toString();
 	}
 	
 	public boolean addMessage(Message message){
@@ -45,5 +41,11 @@ public class Conversation {
 
 	public String getConversationId() {
 		return conversationId;
+	}
+
+	@Override
+	public String toString() {
+		return "Conversation [conversationId=" + conversationId + ", messages=" + messages + ", receivers=" + receivers
+				+ "]";
 	}
 }

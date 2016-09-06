@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import com.FDMGroup.DALimplementation.ConversationDALImp;
+import com.FDMGroup.DALimplementation.UserDALImp;
 import com.FDMGroup.DALinterfaces.ConversationDAL;
 import com.FDMGroup.Entities.Conversation;
 import com.FDMGroup.Entities.Message;
@@ -17,15 +18,19 @@ import com.FDMGroup.Services.ConversationDataService;
 public class ConversationDataServiceImpl implements ConversationDataService {
 	
 	private ConversationDAL conversationDAL = new ConversationDALImp();
+	private UserDALImp userDAL = new UserDALImp();
 	
 	//retrieve
 	@Override
 	public Conversation getConversationById(String conversationId) {
 		return conversationDAL.getById(conversationId);
 	}
+	
 	@Override
-	public List<Conversation> getConversationsByLoggedInUser(User user) {
-		return conversationDAL.getAll().stream().filter(con -> con.getReceivers().contains(user)).collect(Collectors.toList());
+	public List<Conversation> getConversationsByUserName(String userName) {
+		return conversationDAL.getAll().stream()
+				.filter(con -> con.getReceivers().contains(userDAL.getByLoginName(userName)))
+				.collect(Collectors.toList());
 	}
 	
 	//update
