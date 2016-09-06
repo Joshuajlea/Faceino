@@ -1,15 +1,14 @@
 package com.FDMGroup.Entities;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Column;
 
 public class User {
 	
 	private String loginName, password, picReference;
 	private int balance;
 	private List<Conversation> conversations;
-	private List<Message> content;
+	private List<Message> content = new ArrayList<Message>();
 	private boolean active,
 					blocked;
 	private List<String> roles;
@@ -67,15 +66,15 @@ public class User {
 		return roles;
 	}
 
-	// verification boolean
+	/*// verification boolean
 	@Column(name = "enabled")
     private boolean enabled;
      
-    public User() {
+    public User() {						////// Made redundant
         super();
         this.enabled=false;
     }
-    /////////////////////////////
+    ///////////////////////////// */
 	public String getEmail() {
 		return null;
 	}
