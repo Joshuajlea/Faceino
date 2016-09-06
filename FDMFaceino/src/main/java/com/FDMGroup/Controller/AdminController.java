@@ -52,4 +52,30 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 	
+	@PostMapping("/adminBlockUser")
+	public String blockEnabledUser(HttpServletRequest request){
+		
+		if(request.getParameterMap().containsKey("block")){
+			String[] userListToBeBlocked = request.getParameterValues("block");
+			for(String s : userListToBeBlocked){
+				registerDataService.blockUserByName(s);
+			}	
+		}		
+		
+		return "redirect:/admin";
+	}
+	
+	@PostMapping("/adminUnblockUser")
+	public String unblockEnabledUser(HttpServletRequest request){
+		
+		if(request.getParameterMap().containsKey("block")){
+			String[] userListToBeBlocked = request.getParameterValues("block");
+			for(String s : userListToBeBlocked){
+				registerDataService.unblockUserByName(s);
+			}	
+		}		
+		
+		return "redirect:/admin";
+	}
+	
 }
