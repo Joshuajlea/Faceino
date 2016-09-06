@@ -8,7 +8,7 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
 @Configuration
 @EnableWebSocketMessageBroker
-public class PublicChatConfiguration extends AbstractWebSocketMessageBrokerConfigurer {
+public class ChatConfiguration extends AbstractWebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
