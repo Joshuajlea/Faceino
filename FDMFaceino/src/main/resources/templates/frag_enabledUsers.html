@@ -9,9 +9,9 @@
 	       			<table>
 	       				<tr>
 	       				<td>User</td>
-	       				<td>Unblock</td>
+	       				<td>Block</td>
 	       				</tr>	       			
-		       			<th:block th:each="user : ${blockedUsers}">
+		       			<th:block th:each="user : ${activatedUsers}">
 			       			<tr>
 			       				<td th:text="${user.loginName}"></td>
 			        			<td><input type="checkbox" name="block" th:value="${user.loginName}"/></td>
