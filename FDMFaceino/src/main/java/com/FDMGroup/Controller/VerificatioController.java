@@ -15,9 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.FDMGroup.Entities.User;
 import com.FDMGroup.Verification.OnRegistrationCompleteEvent;
 
-public class VerificatioController {
-	@Autowired
-	ApplicationEventPublisher eventPublisher
+//public class VerificatioController {
+	/*@Autowired
+	//ApplicationEventPublisher eventPublisher
 	 
 	@RequestMapping(value = "/user/registration", method = RequestMethod.POST)
 	public ModelAndView registerUserAccount(
@@ -45,4 +45,4 @@ public class VerificatioController {
 
 	private User createUserAccount(User accountDto) {
 		return null;
-	}}
+	}}*/

@@ -1,27 +1,15 @@
 package com.FDMGroup.Controller;
 
-import java.util.Calendar;
-import java.util.Locale;
-
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.catalina.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.context.request.WebRequest;
-import org.thymeleaf.expression.Messages;
-
 import com.FDMGroup.RegisterDAO;
-import com.FDMGroup.Verification.VerificationToken;
+//import com.FDMGroup.Verification.VerificationToken;
 
 @Controller
 @SessionAttributes
@@ -76,8 +64,8 @@ public class RegistrationController {
 	}
 	//JL
 	
-	@Autowired
-	private IUserService service;
+	//@Autowired
+/*	private IUserService service;
 	 
 	@RequestMapping(value = "/regitrationConfirm", method = RequestMethod.GET)
 	public String confirmRegistration
@@ -102,5 +90,5 @@ public class RegistrationController {
 	    user.setEnabled(true); 
 	    service.saveRegisteredUser(user); 
 	    return "redirect:/login.html?lang=" + request.getLocale().getLanguage(); 
-	}
+	}*/
 }
