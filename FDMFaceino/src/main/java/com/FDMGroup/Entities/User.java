@@ -1,5 +1,6 @@
 package com.FDMGroup.Entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -7,7 +8,7 @@ public class User {
 	private String loginName, password, picReference;
 	private int balance;
 	private List<Conversation> conversations;
-	private List<Message> content;
+	private List<Message> content = new ArrayList<Message>();
 	private boolean active,
 					blocked;
 	private List<String> roles;
