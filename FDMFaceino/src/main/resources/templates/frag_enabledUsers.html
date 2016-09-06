@@ -4,6 +4,28 @@
        <div th:fragment="user" class="container-fluid">
        		<div class="row text-center">
        			enable User
+       			
+       			<form th:action="@{/adminBlockUser}" method="POST">
+	       			<table>
+	       				<tr>
+	       				<td>User</td>
+	       				<td>Unblock</td>
+	       				</tr>	       			
+		       			<th:block th:each="user : ${blockedUsers}">
+			       			<tr>
+			       				<td th:text="${user.loginName}"></td>
+			        			<td><input type="checkbox" name="block" th:value="${user.loginName}"/></td>
+			        		</tr>
+		    			</th:block>
+		    			<tr>
+		    				<td></td>
+		    				<td></td>
+		    				<td><input type="submit" value="Submit"/></td>
+		    			</tr>
+       				</table> 
+	       		</form>			
+       			
+       			
        		</div>
        </div>
 </body>
