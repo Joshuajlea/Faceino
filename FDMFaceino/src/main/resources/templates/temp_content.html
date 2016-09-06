@@ -4,6 +4,14 @@
        <div th:fragment="logo" class="container-fluid">
        		<div class="row text-center">
        			CONTENT
+       			<input type="text" name="stuff" id="stuff_id"/>
+       			<button id="searchButton" name="searchButton" onclick="retrieveGuests()" type="button">Button</button>
+       			<span th:text="${test}">blank</span>
+       			
+       			<th:block th:each="message : ${messages}">
+			    	<p th:text="${message.content}"></p>
+		    	</th:block>
+       			
        		</div>
        </div>
 </body>
