@@ -1,6 +1,7 @@
 package com.FDMGroup.Services.Implementation;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import com.FDMGroup.DALimplementation.UserDALImp;
@@ -23,19 +24,28 @@ public class RegistrationDataServiceImpl implements RegistrationDataService{
 	}
 
 	@Override
-	public List<User> getNewUsers() {
-		return Arrays.asList(new User("TEST1", "12345","",Arrays.asList("USER")), 
-							 new User("TEST2", "12345","",Arrays.asList("USER")));
+	public Collection<User> getNewUsers() {
+		return userDataAcessLayer.getNUser();
 	}
 
 	@Override
-	public List<User> getActivatedUsers() {
-		return null;
+	public Collection<User> getActivatedUsers() {
+		return userDataAcessLayer.getEUser();
 	}
 
 	@Override
-	public List<User> getBlockedUsers() {
-		return null;
+	public Collection<User> getBlockedUsers() {
+		return userDataAcessLayer.getBUser();
+	}
+
+	@Override
+	public boolean activateUserByName(String name) {
+		return userDataAcessLayer.activateUserByName(name);
+	}
+
+	@Override
+	public boolean blockUserByName(String name) {
+		return userDataAcessLayer.blockUserByName(name);
 	}
 
 }
