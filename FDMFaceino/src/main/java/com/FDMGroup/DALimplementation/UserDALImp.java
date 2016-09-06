@@ -62,16 +62,28 @@ public class UserDALImp implements UserDAL {
 	//Dal implementation for admin page to be populated with users info 
 	
 	
-	public Collection getNUser() {
+	public Collection<User> getNUser() {
 		return getAll().stream().filter(a -> a.isActive() == false).collect(Collectors.toList());
 	}
 
-	public Collection getEUser() {
+	public Collection<User> getEUser() {
 		return getAll().stream().filter(a -> a.isActive() == true).collect(Collectors.toList());
 	}
 
-	public Collection getBUser() {
+	public Collection<User> getBUser() {
 		return getAll().stream().filter(a -> a.isBlocked() == true).collect(Collectors.toList());
+	}
+
+	@Override
+	public boolean activateUserByName(String name) {
+		getByLoginName(name).setActive(true);
+		return true;
+	}
+
+	@Override
+	public boolean blockUserByName(String name) {
+		getByLoginName(name).setBlocked(true);
+		return true;
 	}
 
 }
