@@ -110,9 +110,13 @@
 								<form action="javascript:sendPrivateChatMessage($('#tempTHInfo').text())">
 									<input type="text" th:id="'messageGroup' + ${conversation.conversationId}" placeholder="message" autocomplete="off" /> 
 									<input type="submit" value="send" />
-	
+										
 									<div style="height: 512px; overflow: auto">
 										<p th:id="'response'+${conversation.conversationId}"></p>
+																				
+									<p id="messageHistory" ></p>
+									<p id="oneMessageInChat" th:each="message : ${session.conversations[0].getMessages()}"> <b th:text="${message.sender}"></b> : <i th:text="${message.content}"></i><br/><br/></p>
+	
 									</div>
 								</form>
 							</div>
@@ -130,10 +134,11 @@
 		</div>
 	</div>	
 	
+	
 	<div style="visibility: hidden" id="hiddenUser" th:text="${session.userData.loginName}">John Doe</div>
 		
 	<div style="visibility: hidden" id="hiddenContent">
-		<div th:replace="temp_content::logo"></div>
+		<div th:replace="frag_content::logo"></div>
 	</div>
 	<div style="visibility: hidden" id="hiddenProfile">
 		<div th:replace="frag_profile::logo"></div>
