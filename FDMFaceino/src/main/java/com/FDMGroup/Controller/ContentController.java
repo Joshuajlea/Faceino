@@ -55,7 +55,7 @@ public class ContentController {
 		userDImpl.getByLoginName(auth.getName()).getContent().add(new Message(auth.getName(), text));
 
 		sessionThings(session);
-		return "temp_content :: logo";
+		return "frag_content :: logo";
 	}
 
 	@GetMapping("/posts")
@@ -64,7 +64,7 @@ public class ContentController {
 
 		sessionThings(session);
 
-		return "temp_content :: logo";
+		return "frag_content :: logo";
 	}
 
 	private void sessionThings(HttpSession session) {
