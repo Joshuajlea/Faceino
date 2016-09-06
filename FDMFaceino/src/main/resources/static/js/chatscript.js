@@ -26,7 +26,7 @@ var stompClient2 = null;
 			setConnected(true);
 			console.log('Connected: ' + frame);
 			stompClient2.subscribe('/user/queue/messages', function(message) {
-				showMessageP(JSON.parse(message.body));
+				showPrivateMessage(JSON.parse(message.body));
 			});
 		});
 	}
@@ -51,7 +51,7 @@ var stompClient2 = null;
 			'content' : content,
 			'conversationId' : messageField
 		}));
-		content = document.getElementById(messageField);
+		content = document.getElementById('messageGroup'+messageField);
 		content.value = '';
 		content.focus();
 	}
@@ -77,8 +77,8 @@ var stompClient2 = null;
 		response.insertBefore(p, response.childNodes[0]);
 	}
 	
-	function showMessageP(message) {
-		var response = document.getElementById(message.conversationId);
+	function showPrivateMessage(message) {
+		var response = document.getElementById('response' + message.conversationId);
 		var boldName = document.createElement('b');
 		var name = message.sender.split('@')[0];
 		boldName.appendChild(document.createTextNode(name));

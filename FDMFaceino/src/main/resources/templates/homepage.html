@@ -105,19 +105,19 @@
 						
 						</div>
 						<div th:each="conversation, status  : ${session.conversations}" role="tabpanel" class="tab-pane active" th:id="${conversation.conversationId}">
-							
-							<div style="visibility:hidden" th:text="${conversation.conversationId}" id="tempTHInfo"></div>
-							
+							<br/>						
 							<div id="conversationDiv">
 								<form action="javascript:sendPrivateChatMessage($('#tempTHInfo').text())">
 									<input type="text" th:id="'messageGroup' + ${conversation.conversationId}" placeholder="message" autocomplete="off" /> 
 									<input type="submit" value="send" />
 	
 									<div style="height: 512px; overflow: auto">
-										<p th:id="${conversation.conversationId}"></p>
+										<p th:id="'response'+${conversation.conversationId}"></p>
 									</div>
 								</form>
 							</div>
+							
+							<div style="visibility:hidden" th:text="${conversation.conversationId}" id="tempTHInfo"></div>
 						
 						</div>
 						
@@ -128,13 +128,10 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	
+	</div>	
 	
 	<div style="visibility: hidden" id="hiddenUser" th:text="${session.userData.loginName}">John Doe</div>
-	
-	<div th:each="conversation  : ${session.conversations}" style="visibility: hidden" th:id="${conversation.conversationId}"></div>
-	
+		
 	<div style="visibility: hidden" id="hiddenContent">
 		<div th:replace="temp_content::logo"></div>
 	</div>
