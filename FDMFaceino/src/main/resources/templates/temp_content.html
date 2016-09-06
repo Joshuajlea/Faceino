@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-       <div th:fragment="logo" class="container-fluid">
-              <div class="row text-center">
-                     CONTENT
-              </div>
-       </div>
+	<div th:fragment="logo" class="container-fluid">
+		<form name="post" id="contentForm" action="postcontent" method="post">
+			<textarea rows="3" cols="80" id="content" name="content"
+				placeholder="Whats on your mind!!"></textarea>
+			<button id="button" name="button">Post</button>
+		</form>
+		<div class="row text-center" id="contentid">CONTENT</div>
+		<div class="row text-center" th:text="${session.posts.toString()}">All
+			the posts</div>
+	</div>
+
 </body>
 </html>
