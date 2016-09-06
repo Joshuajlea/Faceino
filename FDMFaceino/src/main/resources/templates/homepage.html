@@ -65,7 +65,7 @@
 			<div class="col-md-1"></div>
 
 			<div class="col-md-7 topDown" id="contentPage">
-				<div th:replace="temp_content::logo"></div>
+				<div th:replace="frag_content::logo"></div>
 			</div>
 
 			<div class="col-md-4 topDown" id="chatPage">
@@ -147,7 +147,7 @@
 	<div style="visibility: hidden" id="hiddenUser" th:text="${session.userData.loginName}">John Doe</div>
 	<div style="visibility: hidden" id="hiddenConversationId1" th:text="${session.conversations[0].conversationId}"></div>
 	<div style="visibility: hidden" id="hiddenContent">
-		<div th:replace="temp_content::logo"></div>
+		<div th:replace="frag_content::logo"></div>
 	</div>
 	<div style="visibility: hidden" id="hiddenProfile">
 		<div th:replace="frag_profile::logo"></div>
