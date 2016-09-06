@@ -17,4 +17,10 @@ public class ConversationMessage extends Message {
 		return conversationId;
 	}
 
+	@Override
+	public String toString() {
+		return "ConversationMessage [conversationId=" + conversationId + "]" + "content : " + super.getContent() + " Sender " + super.getSender() + " Time: " + super.getTime() + "MessageId: " + super.getMessageId();
+	}	
+	
+
 }

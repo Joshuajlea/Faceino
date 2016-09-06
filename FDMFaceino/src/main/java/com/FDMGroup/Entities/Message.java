@@ -1,15 +1,12 @@
 package com.FDMGroup.Entities;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 public class Message {
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String messageId;
 	private String sender;
 	private String content;
@@ -22,6 +19,7 @@ public class Message {
 		this.sender = sender;
 		this.content = content;
 		this.time = LocalDateTime.now();
+		this.messageId = UUID.randomUUID().toString();
 	}
 
 	public String getSender() {
@@ -47,4 +45,13 @@ public class Message {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+	@Override
+	public String toString() {
+		return "Message [messageId=" + messageId + ", sender=" + sender + ", content=" + content + ", time=" + time
+				+ "]";
+	}
+	
+	
+	
 }

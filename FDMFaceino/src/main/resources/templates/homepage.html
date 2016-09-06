@@ -104,8 +104,7 @@
 								<form action="javascript:sendPublicChatMessage()">
 									<input type="text" id="message" placeholder="message"
 										autocomplete="off" /> 
-									<input id="sendMessage" type="submit"
-										value="send" />
+									<input type="submit" value="send" />
 	
 									<div style="height: 512px; overflow: auto">
 										<p id="response"></p>
@@ -121,16 +120,19 @@
 								<form action="javascript:sendPrivateChatMessage('messageGroup1')">
 									<input type="text" id="messageGroup1" placeholder="message"
 										autocomplete="off" /> 
-									<input id="sendMessage" type="submit"
-										value="send" />
+									<input type="submit" value="send" />
 	
 									<div style="height: 512px; overflow: auto">
-										<p id="response"></p>
+										<p id="responseGroup1"></p>
 									</div>
 								</form>
 							</div>
 						
 						</div>
+						
+						<div role="tabpanel" class="tab-pane active" id="group2"></div>
+						<div role="tabpanel" class="tab-pane active" id="group3"></div>
+						<div role="tabpanel" class="tab-pane active" id="group4"></div>
 						<div role="tabpanel" class="tab-pane" id="group1" th:text="${session.conversations[0].conversationId}"></div>
 						<!--<div role="tabpanel" class="tab-pane" id="table">You will be able to see the table chat here</div>  -->
 						
