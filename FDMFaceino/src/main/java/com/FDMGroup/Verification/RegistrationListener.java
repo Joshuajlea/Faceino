@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-@Component
+/*@Component
 public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {
     @Autowired
     private IUserService service;
@@ -38,4 +38,4 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
         email.setText(message + " rn" + "http://localhost:8080" + confirmationUrl);
         mailSender.send(email);
     }
-}
+}*/

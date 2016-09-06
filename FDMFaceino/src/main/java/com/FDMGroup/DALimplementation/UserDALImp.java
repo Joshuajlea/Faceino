@@ -32,31 +32,26 @@ public class UserDALImp implements UserDAL {
 	public boolean addUser(User user) {
 		return InMemoryUserRepository.getInstance().addUser(user);
 	}
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
 		User u = getByLoginName(arg0);
 		List<SimpleGrantedAuthority> authoritiesList = new ArrayList<SimpleGrantedAuthority>();
-		for(String role : u.getRoles()){
+		for (String role : u.getRoles()) {
 			authoritiesList.add(new SimpleGrantedAuthority(role));
 		}
-		return new org.springframework.security.core.userdetails.User(	u.getLoginName(),
-																		u.getPassword(),
-																		u.isActive(),
-																		true,
-																		true,
-																		!u.isBlocked(),
-																		authoritiesList);
+		return new org.springframework.security.core.userdetails.User(u.getLoginName(), u.getPassword(), u.isActive(),
+				true, true, !u.isBlocked(), authoritiesList);
 	}
 
-	public List<Message> getMessagesForConversationForUser(User user, Conversation con){
+	public List<Message> getMessagesForConversationForUser(User user, Conversation con) {
 		for (Conversation tempCon : user.getConversations())
-			if(tempCon.equals(con))
+			if (tempCon.equals(con))
 				return tempCon.getMessages();
-		
+
 		System.out.println("The user is not part of this conversation");
-		
+
 		return new ArrayList<Message>();
 	}
-	
+
 }
