@@ -63,7 +63,7 @@ public class UserDALImp implements UserDAL {
 	
 	
 	public Collection<User> getNUser() {
-		return getAll().stream().filter(a -> a.isActive() == false).collect(Collectors.toList());
+		return getAll().stream().filter(a -> a.isActive() == false && a.isBlocked() == false).collect(Collectors.toList());
 	}
 
 	public Collection<User> getEUser() {

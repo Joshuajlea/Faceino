@@ -50,7 +50,7 @@ public class RegistrationDataServiceImpl implements RegistrationDataService{
 
 	@Override
 	public boolean unblockUserByName(String name) {
-		// TODO Auto-generated method stub
+		userDataAcessLayer.unblockUserByName(name);
 		return false;
 	}
 
