@@ -77,6 +77,7 @@
 						<li role="presentation" class="active">
 							<a href="#global"	aria-controls="global" role="tab" data-toggle="tab">Global</a>
 						</li>
+												
 						<li role="presentation">
 							<a href="#group1" aria-controls="group1" role="tab" data-toggle="tab">Group 1</a>
 						</li>
@@ -100,7 +101,7 @@
 							<br/>
 						
 							<div id="conversationDiv">
-								<form action="javascript:sendChatMessage()">
+								<form action="javascript:sendPublicChatMessage()">
 									<input type="text" id="message" placeholder="message"
 										autocomplete="off" /> 
 									<input id="sendMessage" type="submit"
@@ -113,29 +114,36 @@
 							</div>
 						
 						</div>
-						<div role="tabpanel" class="tab-pane" id="group1">The Group Chat 1 would be shown here</div>
-						<div role="tabpanel" class="tab-pane" id="group2">The Group Chat 2 would be shown here</div>
-						<div role="tabpanel" class="tab-pane" id="group3">The Group Chat 3 would be shown here</div>
-						<div role="tabpanel" class="tab-pane" id="group4">The Group Chat 4 would be shown here</div>
-						<div role="tabpanel" class="tab-pane" id="table">You will be able to see the table chat here</div>
-					</div>
-
-				</div>
-
-				<br/>
-				<div class="tab-content">
-					<div class="tab-pane active" id="home">
+						<div role="tabpanel" class="tab-pane active" id="group1">
+							<br/>
+						
+							<div id="conversationDiv">
+								<form action="javascript:sendPrivateChatMessage('messageGroup1')">
+									<input type="text" id="messageGroup1" placeholder="message"
+										autocomplete="off" /> 
+									<input id="sendMessage" type="submit"
+										value="send" />
+	
+									<div style="height: 512px; overflow: auto">
+										<p id="response"></p>
+									</div>
+								</form>
+							</div>
+						
+						</div>
+						<div role="tabpanel" class="tab-pane" id="group1" th:text="${session.conversations[0].conversationId}"></div>
+						<!--<div role="tabpanel" class="tab-pane" id="table">You will be able to see the table chat here</div>  -->
 						
 					</div>
-					<div class="tab-pane" id="private1">
-						<div>SAfadsf asdf</div>
-					</div>
-					<div class="tab-pane" id="private2">private 2 here</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	
 	<div style="visibility: hidden" id="hiddenUser" th:text="${session.userData.loginName}">John Doe</div>
+	<div style="visibility: hidden" id="hiddenConversationId1" th:text="${session.conversations[0].conversationId}"></div>
 	<div style="visibility: hidden" id="hiddenContent">
 		<div th:replace="temp_content::logo"></div>
 	</div>

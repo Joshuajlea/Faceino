@@ -14,5 +14,5 @@ public interface ConversationDataService {
 	void addMessageToConversation(Message message, String conversationId);
 	void deleteConversationById(String conversationId);
 	Conversation getConversationById(String conversationId);
-	List<Conversation> getConversationsByLoggedInUser(User user);
+	List<Conversation> getConversationsByUserName(String userName);
 }

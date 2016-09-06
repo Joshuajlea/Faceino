@@ -14,21 +14,23 @@ import com.FDMGroup.Services.Implementation.ConversationDataServiceImpl;
 @Controller
 public class PrivateChatController {
 	
+	@Autowired
 	private SimpMessagingTemplate template;
 	
 	@Autowired
 	ConversationDataServiceImpl conversationDataService;
 	
 	@MessageMapping("/private")
-	@SendToUser("/topic/messages")
 	public Message sendPrivateMessage (ConversationMessage conMessage) throws Exception {
 		Message newMessage = new Message(conMessage.getSender(), conMessage.getContent());
 		// add message to Conversation database
 		conversationDataService.addMessageToConversation(newMessage, conMessage.getConversationId());
 		// send message to all users in conversation
 		Conversation con = conversationDataService.getConversationById(conMessage.getConversationId());
-		con.getReceivers().forEach(user -> this.template.convertAndSendToUser(user.getLoginName(), "/topic/messages", conMessage));
-		return  newMessage;
+		con.getReceivers().forEach(user -> template.convertAndSendToUser(user.getLoginName(), "/queue/messages", newMessage));
+		System.out.println("Content:" + newMessage.toString());
+		System.out.println(conversationDataService.getConversationById(conMessage.getConversationId()).toString());
+		return conMessage;
 	}
 
 }

@@ -2,13 +2,14 @@
  * 
  */
 var stompClient = null;
+var stompClient2 = null;
 
 	function setConnected(connected) {
 		document.getElementById('conversationDiv').style.visibility = connected ? 'visible'
 				: 'hidden';
 		document.getElementById('response').innerHTML = '';
 	}
-
+	
 	function connect() {
 		var socket = new SockJS('/public');
 		stompClient = Stomp.over(socket);
@@ -19,9 +20,18 @@ var stompClient = null;
 				showMessage(JSON.parse(message.body));
 			});
 		});
+		var socket2 = new SockJS('/private');
+		stompClient2 = Stomp.over(socket2);
+		stompClient2.connect({}, function(frame) {
+			setConnected(true);
+			console.log('Connected: ' + frame);
+			stompClient2.subscribe('/user/topic/messages', function(message) {
+				showMessage(JSON.parse(message.body));
+			});
+		});
 	}
 
-	function sendChatMessage() {
+	function sendPublicChatMessage() {
 		var sender = document.getElementById('hiddenUser').innerHTML;
 		var message = document.getElementById('message').value;
 		stompClient.send("/app/public", {}, JSON.stringify({
@@ -29,6 +39,20 @@ var stompClient = null;
 			'content' : message
 		}));
 		var content = document.getElementById('message');
+		content.value = '';
+		content.focus();
+	}
+
+	function sendPrivateChatMessage(messageField) {
+		var sender = document.getElementById('hiddenUser').innerHTML;
+		var conversationId = document.getElementById('hiddenConversationId1').innerHTML;
+		var content = document.getElementById(messageField).value;
+		stompClient2.send("/app/private", {}, JSON.stringify({
+			'sender' : sender,
+			'content' : content,
+			'conversationId' : conversationId
+		}));
+		content = document.getElementById(messageField);
 		content.value = '';
 		content.focus();
 	}
