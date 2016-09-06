@@ -1,20 +1,24 @@
 package com.FDMGroup.Entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+
+import org.hibernate.mapping.Array;
 
 public class User {
 	
 	private String loginName, password, picReference;
 	private int balance;
 	private List<Conversation> conversations;
-	private List<Message> content;
+	private List<Message> content ;
 	private boolean active,
 					blocked;
 	private List<String> roles;
 	
 	public User(String loginName, String password, String picReference, List<String> roles) {
+		content = new ArrayList<Message>();
 		this.loginName = loginName;
 		this.password = password;
 		this.picReference = picReference;
