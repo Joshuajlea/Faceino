@@ -7,7 +7,11 @@ import org.springframework.context.ApplicationEvent;
 import com.FDMGroup.Entities.User;
 
 public class OnRegistrationCompleteEvent extends ApplicationEvent {
-    private final String appUrl;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6139477151021808506L;
+	private final String appUrl;
     private final Locale locale;
     private final User user;
  
