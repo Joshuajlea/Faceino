@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import javax.persistence.Id;
 
-public class Message {
+public class Message implements Comparable<Message> {
 	@Id
 	private String messageId;
 	private String sender;
@@ -46,12 +46,18 @@ public class Message {
 		this.content = content;
 	}
 
-	@Override
 	public String toString() {
-		return "Message [messageId=" + messageId + ", sender=" + sender + ", content=" + content + ", time=" + time
-				+ "]";
+
+		return this.getSender() + "\t " + this.getContent() + " \t" + this.getTime().getHour() + " "
+				+ this.getTime().getMinute() + " " + this.getTime().getSecond();
 	}
-	
-	
-	
+
+	@Override
+	public int compareTo(Message o) {
+		if (this.getTime().isBefore(o.getTime())) {
+			return -1;
+		}
+		return 1;
+	}
+
 }
