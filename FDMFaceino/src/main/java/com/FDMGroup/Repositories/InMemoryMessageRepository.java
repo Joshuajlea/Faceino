@@ -1,6 +1,7 @@
 package com.FDMGroup.Repositories;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.FDMGroup.Entities.Message;
@@ -17,7 +18,7 @@ public class InMemoryMessageRepository {
 		return INSTANCE;
 	}	
 	
-	private InMemoryMessageRepository(){		
+	private InMemoryMessageRepository(){
 	}
 		
 	public boolean addMessage(Message con){
@@ -25,6 +26,8 @@ public class InMemoryMessageRepository {
 	}
 	
 	public List<Message> getAll(){
+		Collections.sort(messages, (Message m1, Message m2) -> m1.getTime().compareTo(m2.getTime()));
+		Collections.reverse(messages);
 		return messages;
 	}
 	

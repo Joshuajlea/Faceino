@@ -26,7 +26,7 @@ var stompClient2 = null;
 			setConnected(true);
 			console.log('Connected: ' + frame);
 			stompClient2.subscribe('/user/queue/messages', function(message) {
-				showMessage(JSON.parse(message.body), 'responseGroup1');
+				showPrivateMessage(JSON.parse(message.body));
 			});
 		});
 	}
@@ -45,14 +45,13 @@ var stompClient2 = null;
 
 	function sendPrivateChatMessage(messageField) {
 		var sender = document.getElementById('hiddenUser').innerHTML;
-		var conversationId = document.getElementById('hiddenConversationId1').innerHTML;
-		var content = document.getElementById(messageField).value;
+		var content = document.getElementById('messageGroup'+messageField).value;
 		stompClient2.send("/app/private", {}, JSON.stringify({
 			'sender' : sender,
 			'content' : content,
-			'conversationId' : conversationId
+			'conversationId' : messageField
 		}));
-		content = document.getElementById(messageField);
+		content = document.getElementById('messageGroup'+messageField);
 		content.value = '';
 		content.focus();
 	}
@@ -60,6 +59,26 @@ var stompClient2 = null;
 	function showMessage(message, responseField) {
 		var response = document.getElementById(responseField);
 
+		var boldName = document.createElement('b');
+		var name = message.sender.split('@')[0];
+		boldName.appendChild(document.createTextNode(name));
+
+		var cursivContent = document.createElement('i');
+		cursivContent.appendChild(document.createTextNode(message.content));
+
+		var p = document.createElement('div');
+		p.id = "oneMessageInChat";
+		p.style.wordWrap = 'break-word';
+		p.appendChild(boldName);
+		p.appendChild(document.createTextNode(' : '));
+		p.appendChild(cursivContent);
+		p.appendChild(document.createElement('br'));
+		p.appendChild(document.createElement('br'));
+		response.insertBefore(p, response.childNodes[0]);
+	}
+	
+	function showPrivateMessage(message) {
+		var response = document.getElementById('response' + message.conversationId);
 		var boldName = document.createElement('b');
 		var name = message.sender.split('@')[0];
 		boldName.appendChild(document.createTextNode(name));

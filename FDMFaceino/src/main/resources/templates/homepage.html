@@ -78,17 +78,8 @@
 							<a href="#global"	aria-controls="global" role="tab" data-toggle="tab">Global</a>
 						</li>
 												
-						<li role="presentation">
-							<a href="#group1" aria-controls="group1" role="tab" data-toggle="tab">Group 1</a>
-						</li>
-						<li role="presentation">
-							<a href="#group2" aria-controls="group2" role="tab" data-toggle="tab">Group 2</a>
-						</li>
-						<li role="presentation">
-							<a href="#group3" aria-controls="group3" role="tab" data-toggle="tab">Group 3</a>
-						</li>
-						<li role="presentation">
-							<a href="#group4" aria-controls="group4" role="tab" data-toggle="tab">Group 4</a>
+						<li th:each="conversation, status  : ${session.conversations}" role="presentation">
+							<a th:text="'Group' + ${status.count}" th:href="'#'+ ${conversation.conversationId}" aria-controls="group1" role="tab" data-toggle="tab">Group 1</a>
 						</li>
 						<li role="presentation">
 							<a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a>
@@ -113,39 +104,39 @@
 							</div>
 						
 						</div>
-						<div role="tabpanel" class="tab-pane active" id="group1">
-							<br/>
-						
+						<div th:each="conversation, status  : ${session.conversations}" role="tabpanel" class="tab-pane active" th:id="${conversation.conversationId}">
+							<br/>						
 							<div id="conversationDiv">
-								<form action="javascript:sendPrivateChatMessage('messageGroup1')">
-									<input type="text" id="messageGroup1" placeholder="message"
-										autocomplete="off" /> 
+								<form action="javascript:sendPrivateChatMessage($('#tempTHInfo').text())">
+									<input type="text" th:id="'messageGroup' + ${conversation.conversationId}" placeholder="message" autocomplete="off" /> 
 									<input type="submit" value="send" />
-	
+										
 									<div style="height: 512px; overflow: auto">
-										<p id="responseGroup1"></p>
+										<p th:id="'response'+${conversation.conversationId}"></p>
+																				
+									<p id="messageHistory" ></p>
+									<p id="oneMessageInChat" th:each="message : ${session.conversations[0].getMessages()}"> <b th:text="${message.sender}"></b> : <i th:text="${message.content}"></i><br/><br/></p>
+	
 									</div>
 								</form>
 							</div>
+							
+							<div style="visibility:hidden" th:text="${conversation.conversationId}" id="tempTHInfo"></div>
 						
 						</div>
 						
-						<div role="tabpanel" class="tab-pane active" id="group2"></div>
-						<div role="tabpanel" class="tab-pane active" id="group3"></div>
-						<div role="tabpanel" class="tab-pane active" id="group4"></div>
-						<div role="tabpanel" class="tab-pane" id="group1" th:text="${session.conversations[0].conversationId}"></div>
-						<!--<div role="tabpanel" class="tab-pane" id="table">You will be able to see the table chat here</div>  -->
+						<div role="tabpanel" class="tab-pane" id="table">You will be able to see the table chat here</div> 
 						
 					</div>
 
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>	
 	
 	
 	<div style="visibility: hidden" id="hiddenUser" th:text="${session.userData.loginName}">John Doe</div>
-	<div style="visibility: hidden" id="hiddenConversationId1" th:text="${session.conversations[0].conversationId}"></div>
+		
 	<div style="visibility: hidden" id="hiddenContent">
 		<div th:replace="frag_content::logo"></div>
 	</div>

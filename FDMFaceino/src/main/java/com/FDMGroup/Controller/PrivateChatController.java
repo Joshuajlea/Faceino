@@ -26,7 +26,7 @@ public class PrivateChatController {
 		conversationDataService.addMessageToConversation(newMessage, conMessage.getConversationId());
 		// send message to all users in conversation
 		Conversation con = conversationDataService.getConversationById(conMessage.getConversationId());
-		con.getReceivers().forEach(user -> template.convertAndSendToUser(user.getLoginName(), "/queue/messages", newMessage));
+		con.getReceivers().forEach(user -> template.convertAndSendToUser(user.getLoginName(), "/queue/messages", conMessage));
 		return conMessage;
 	}
 
