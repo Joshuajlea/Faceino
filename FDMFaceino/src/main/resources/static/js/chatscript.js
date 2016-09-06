@@ -16,8 +16,8 @@ var stompClient2 = null;
 		stompClient.connect({}, function(frame) {
 			setConnected(true);
 			console.log('Connected: ' + frame);
-			stompClient.subscribe('/user/queue/messages', function(message) {
-				showMessage(JSON.parse(message.body));
+			stompClient.subscribe('/user/topic/messages', function(message) {
+				showMessage(JSON.parse(message.body), 'response');
 			});
 		});
 		var socket2 = new SockJS('/private');
@@ -25,8 +25,8 @@ var stompClient2 = null;
 		stompClient2.connect({}, function(frame) {
 			setConnected(true);
 			console.log('Connected: ' + frame);
-			stompClient2.subscribe('/user/topic/messages', function(message) {
-				showMessage(JSON.parse(message.body));
+			stompClient2.subscribe('/user/queue/messages', function(message) {
+				showMessage(JSON.parse(message.body), 'responseGroup1');
 			});
 		});
 	}
@@ -57,8 +57,8 @@ var stompClient2 = null;
 		content.focus();
 	}
 
-	function showMessage(message) {
-		var response = document.getElementById('response');
+	function showMessage(message, responseField) {
+		var response = document.getElementById(responseField);
 
 		var boldName = document.createElement('b');
 		var name = message.sender.split('@')[0];
