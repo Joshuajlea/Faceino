@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.support.HttpRequestHandlerServlet;
 
 import com.FDMGroup.Services.LoginDataService;
 import com.FDMGroup.Services.RegistrationDataService;
@@ -35,19 +33,21 @@ public class AdminController {
 	}
 	
 	@PostMapping("/adminNewUser")
-	public String enableOrBlockUser(HttpServletRequest request){
-		String[] userListToEnable = request.getParameterValues("enable");
-		String[] userListToBeBlocked = request.getParameterValues("block");
+	public String enableOrBlockUser(HttpServletRequest request){		
 		
-		System.out.println("To Be enabled");
-		for(String s : userListToEnable){
-			System.out.println(s);
-		}	
-		
-		System.out.println("To Be blocked");
-		for(String s : userListToBeBlocked){
-			System.out.println(s);
-		}	
+		if(request.getParameterMap().containsKey("enable")){
+			String[] userListToEnable = request.getParameterValues("enable");
+			for(String s : userListToEnable){
+				registerDataService.activateUserByName(s);
+			}	
+		}
+
+		if(request.getParameterMap().containsKey("block")){
+			String[] userListToBeBlocked = request.getParameterValues("block");
+			for(String s : userListToBeBlocked){
+				registerDataService.blockUserByName(s);
+			}	
+		}
 		
 		return "redirect:/admin";
 	}
