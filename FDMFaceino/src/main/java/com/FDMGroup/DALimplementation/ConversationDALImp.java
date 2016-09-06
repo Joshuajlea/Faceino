@@ -7,7 +7,6 @@ import com.FDMGroup.Entities.Conversation;
 import com.FDMGroup.Entities.User;
 import com.FDMGroup.Repositories.InMemoryConversationRepository;
 import com.FDMGroup.Repositories.InMemoryUserRepository;
-import com.jayway.jsonpath.Predicate;
 
 public class ConversationDALImp implements ConversationDAL {
 	
