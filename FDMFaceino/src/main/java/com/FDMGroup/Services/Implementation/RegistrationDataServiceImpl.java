@@ -1,6 +1,6 @@
 package com.FDMGroup.Services.Implementation;
 
-import java.util.Arrays;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -46,6 +46,12 @@ public class RegistrationDataServiceImpl implements RegistrationDataService{
 	@Override
 	public boolean blockUserByName(String name) {
 		return userDataAcessLayer.blockUserByName(name);
+	}
+
+	@Override
+	public boolean unblockUserByName(String name) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

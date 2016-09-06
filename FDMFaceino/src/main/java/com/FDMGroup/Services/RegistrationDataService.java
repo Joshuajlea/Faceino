@@ -13,4 +13,5 @@ public interface RegistrationDataService {
 	Collection<User> getBlockedUsers();
 	boolean activateUserByName(String name);
 	boolean blockUserByName(String name);
+	boolean unblockUserByName(String name);
 }
