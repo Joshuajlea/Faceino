@@ -86,5 +86,11 @@ public class UserDALImp implements UserDAL {
 		return true;
 	}
 
+	@Override
+	public boolean unblockUserByName(String name) {
+		getByLoginName(name).setBlocked(false);
+		return true;
+	}
+
 }
 

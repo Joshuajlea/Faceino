@@ -19,4 +19,5 @@ public interface UserDAL extends UserDetailsService {
 	
 	boolean activateUserByName(String name);
 	boolean blockUserByName(String name);
+	boolean unblockUserByName(String name);
 }
