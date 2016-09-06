@@ -2,8 +2,6 @@ package com.FDMGroup.Entities;
 
 import java.util.List;
 
-import javax.persistence.Column;
-
 public class User {
 	
 	private String loginName, password, picReference;
