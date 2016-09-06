@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head th:fragment="headFragment">
 	
 		<link rel="stylesheet" 
@@ -17,10 +17,8 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	
 		<script type="text/javascript" src="js/navigationscript.js"></script>
-		<script type="text/javascript" src="js/chatscript.js">
-			var user = ${session.userData});
-		</script>
-		
+		<script type="text/javascript" src="js/chatscript.js"></script>
+		<script type="text/javascript" src="js/adminscripts.js"></script>
 	
     </head>
 </html>
