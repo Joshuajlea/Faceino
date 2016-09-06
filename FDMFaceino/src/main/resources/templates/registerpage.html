@@ -20,10 +20,10 @@
 	<div class="container-fluid">
 	<br/><br/><br/>
 		<div id ="error">
-			{{errorMessage}}
+			<span th:text="${errorMessage}"></span>
 		</div>
 		<div>
-			<form name="f" th:action="@/register" method="post"> 
+			<form name="f" th:action="@{/register}" method="post"> 
 			<table>
 				<tr>
 					<td><label>Loginname: </label></td>
@@ -39,7 +39,7 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="submit" value="Register"></td>
+					<td><input type="submit" value="Register"/></td>
 				</tr>
 			</table>
 			</form>

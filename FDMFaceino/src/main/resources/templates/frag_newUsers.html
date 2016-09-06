@@ -4,8 +4,6 @@
        <div th:fragment="user" class="container-fluid">
        		<div class="row text-center">
        			new User
-       			<h2 th:text="${session.userData.loginName}">User</h2>
-       			
        			
        			<form th:action="@{/adminNewUser}" method="POST">
 	       			<table>
