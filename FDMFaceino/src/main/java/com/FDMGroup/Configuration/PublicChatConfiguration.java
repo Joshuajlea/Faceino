@@ -12,13 +12,13 @@ public class PublicChatConfiguration extends AbstractWebSocketMessageBrokerConfi
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
-		config.enableSimpleBroker("/queue","/user");
+		config.enableSimpleBroker("/topic","/queue","/user");
 		config.setApplicationDestinationPrefixes("/app");
 	}
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/public").withSockJS();
+		registry.addEndpoint("/public","/private").withSockJS();
 	}
 
 

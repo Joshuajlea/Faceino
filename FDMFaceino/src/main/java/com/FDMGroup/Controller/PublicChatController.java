@@ -16,13 +16,8 @@ public class PublicChatController {
 
     @MessageMapping("/public")
     public Message sendMessage(Message message) throws Exception {
-    	messageConverter.convertAndSend("/user/queue/messages", message);
+    	messageConverter.convertAndSend("/user/topic/messages", message);
         return message;
     }
     
-    @RequestMapping("/sendall")
-    public String publicChat(){
-    	return "chat";
-
-    }
 }
