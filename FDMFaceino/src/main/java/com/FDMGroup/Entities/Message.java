@@ -7,12 +7,14 @@ import javax.persistence.Id;
 
 public class Message implements Comparable<Message> {
 	@Id
-	private String messageId;
+	private final String messageId;
 	private String sender;
 	private String content;
-	private LocalDateTime time;
+	private final LocalDateTime time;
 
 	protected Message() {
+		this.time = LocalDateTime.now();
+		this.messageId = UUID.randomUUID().toString();
 	}
 
 	public Message(String sender, String content) {

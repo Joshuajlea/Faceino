@@ -35,7 +35,6 @@ public class InMemoryConversationRepository {
 		con2.addMessage(new Message("tim.bell@fdmgroup.com", "cool, dude, this works"));
 		conversations.add(con);
 		conversations.add(con2);
-		System.out.println("Con 1 id: " + con.getConversationId() + "\nCon 2 id: " + con2.getConversationId());
 	}
 	
 	public boolean addConversation(Conversation con){
