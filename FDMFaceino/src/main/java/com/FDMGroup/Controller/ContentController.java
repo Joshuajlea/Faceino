@@ -13,9 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.FDMGroup.DALinterfaces.UserDAL;
 import com.FDMGroup.Entities.Message;
@@ -50,20 +47,20 @@ public class ContentController {
 	@GetMapping("/posts/{text}")
 	public String postStuff(Model model, HttpSession session, HttpServletRequest request,
 			@PathVariable("text") String text, Authentication auth) {
-		model.addAttribute("test", "Working");
-
+		
+		text = text.replace('_', ' ');
+		
 		userDImpl.getByLoginName(auth.getName()).getContent().add(new Message(auth.getName(), text));
 
+		//System.out.println(request.getAttribute("content").toString());
+		
 		sessionThings(session);
 		return "frag_content :: logo";
 	}
 
 	@GetMapping("/posts")
 	public String postStuff(Model model, HttpSession session) {
-		model.addAttribute("test", "Working");
-
 		sessionThings(session);
-
 		return "frag_content :: logo";
 	}
 
