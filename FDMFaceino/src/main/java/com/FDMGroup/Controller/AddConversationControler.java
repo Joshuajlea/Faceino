@@ -35,7 +35,7 @@ public class AddConversationControler {
 		conversationData.createNewConversation(new Conversation(convertToUserList(receivers)));
 		// update session attribute
 		updateSessionAttribute(session, auth);
-		return "frag_addConversation :: addConversation";
+		return "frag_chat :: chat";
 	}
 	
 	@GetMapping("/allusers")	
@@ -43,11 +43,16 @@ public class AddConversationControler {
 		return userData.getAll().stream().map(a -> a.getLoginName()).collect(Collectors.toList());
 	}
 	
-	
+	@GetMapping("/conversation")
+	public String addConversation() {
+		return "frag_chat :: chat";
+	}
 
 	private void updateSessionAttribute(HttpSession session, Authentication auth) {
 		session.setAttribute("conversations", conversationData.getConversationsByUserName(auth.getName()));
 	}
+	
+	
 	
 	private List<User> convertToUserList(String[] receivers) {
 		List<User> tempList = new ArrayList<User>();

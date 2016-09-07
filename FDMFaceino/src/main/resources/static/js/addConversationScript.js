@@ -5,8 +5,7 @@ function loadRegisteredUsers() {
         success:function(data) {
         	showAllUserNames(data); 
         }
-      });
-    
+      });    
 }
 
 function showAllUserNames(data){
@@ -36,7 +35,8 @@ function createConversation(){
 		   data: {myArray: receivers},
 		   url: "/conversation",
 		   success: function(msg){
-		     
+
+			  $("#chatPage").load('/conversation');
 		   }
 		});
 }

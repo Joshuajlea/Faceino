@@ -7,7 +7,7 @@ public class User {
 	
 	private String loginName, password, picReference;
 	private int balance;
-	private List<Conversation> conversations;
+	private List<Conversation> conversations = new ArrayList<Conversation>();
 	private List<Message> content = new ArrayList<Message>();
 	private boolean active,
 					blocked;
