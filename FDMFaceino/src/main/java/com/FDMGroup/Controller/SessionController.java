@@ -48,8 +48,6 @@ public class SessionController {
 		Collections.reverse(posts);
 		
 		session.setAttribute("posts", posts);
-		
-		System.out.println(posts.toString());
 		return "homepage";
 		
 	}
