@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.FDMGroup.DALinterfaces.UserDAL;
 import com.FDMGroup.Entities.Message;
 import com.FDMGroup.Entities.User;
+import com.FDMGroup.Repositories.InMemoryOnlineRepository;
 import com.FDMGroup.Repositories.InMemoryUserRepository;
 import com.FDMGroup.Services.LoginDataService;
 import com.FDMGroup.Services.TimeCalculatorService;
@@ -56,7 +57,7 @@ public class ContentController {
 		text = text.replace("%20", " ");
 		
 		userDImpl.getByLoginName(auth.getName()).getContent().add(new Message(auth.getName(), text));
-		
+		model.addAttribute("usersLoggedIn", InMemoryOnlineRepository.getInstance().getAllOnlineUser());
 		sessionThings(session);
 		return "frag_content :: logo";
 	}
@@ -64,6 +65,7 @@ public class ContentController {
 	@GetMapping("/posts")
 	public String postStuff(Model model, HttpSession session) {
 		sessionThings(session);
+		model.addAttribute("usersLoggedIn", InMemoryOnlineRepository.getInstance().getAllOnlineUser());
 		return "frag_content :: logo";
 	}
 

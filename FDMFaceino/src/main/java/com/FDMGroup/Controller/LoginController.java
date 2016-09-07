@@ -15,8 +15,7 @@ public class LoginController {
 	}
 
 	@RequestMapping("/loginerror")
-	public String errorPage(){
-		System.out.println();		
+	public String errorPage(){	
 		return "redirect:/login";
 	}
 	
