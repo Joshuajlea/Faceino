@@ -53,7 +53,7 @@ public class ContentController {
 	public String postStuff(Model model, HttpSession session, HttpServletRequest request,
 			@PathVariable("text") String text, Authentication auth) {
 		
-		text = text.replace('_', ' ');
+		text = text.replace("%20", " ");
 		
 		userDImpl.getByLoginName(auth.getName()).getContent().add(new Message(auth.getName(), text));
 		

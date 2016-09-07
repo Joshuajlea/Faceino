@@ -1,5 +1,6 @@
 package com.FDMGroup.Controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +18,7 @@ import com.FDMGroup.Entities.Message;
 import com.FDMGroup.Entities.User;
 import com.FDMGroup.Repositories.InMemoryUserRepository;
 import com.FDMGroup.Services.LoginDataService;
+import com.FDMGroup.Services.TimeCalculatorService;
 import com.FDMGroup.Services.Implementation.ConversationDataServiceImpl;
 
 @Controller
@@ -31,6 +33,9 @@ public class SessionController {
 	@Autowired
 	ConversationDataServiceImpl conversationDataService;
 	
+	@Autowired
+	TimeCalculatorService tCS; 
+	
 	@RequestMapping("/home")
 	public String greetUser(HttpSession session, Model model, Authentication auth){
 		
@@ -42,14 +47,18 @@ public class SessionController {
 		posts.clear();//clear the list to avoid duplicate entries...
 		for (User user : InMemoryUserRepository.getInstance().getAll()) {
 			//posts.addAll(loginDataService.getUserDataFromDatabaseByName(auth.getName()).getContent());
+			
+			List<Message> getTimeList = user.getContent();
+			for(Message m : getTimeList){
+				m.displayTime = tCS.getTimeBetweenAsString(m.getTime(), LocalDateTime.now());
+			}
+			
 			posts.addAll(user.getContent());
 		}
 		Collections.sort(posts);
 		Collections.reverse(posts);
 		
 		session.setAttribute("posts", posts);
-		
-		System.out.println(posts.toString());
 		return "homepage";
 		
 	}

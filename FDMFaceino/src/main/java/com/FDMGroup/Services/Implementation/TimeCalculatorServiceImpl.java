@@ -40,12 +40,48 @@ public class TimeCalculatorServiceImpl implements TimeCalculatorService{
 		Period period = getPeriod(dob, now);
 		long time[] = getTime(dob, now);
 		
-		return period.getYears() + " years " + 
-                period.getMonths() + " months " + 
-                period.getDays() + " days " +
-                time[0] + " hours " +
-                time[1] + " minutes " +
-                time[2] + " seconds.";
+		return getTime(period, time);
+	}
+	
+	private String getTime(Period period, long time[]){
+		if(period.getYears() != 0){
+			return period.getYears() + " years";
+		}
+		return checkMonths(period, time);
 	}
 
+	private String checkMonths(Period period, long time[]){
+		if(period.getMonths() != 0){
+			return period.getMonths() + " months";
+		}
+		return checkDays(period, time);
+	}
+	
+	private String checkDays(Period period, long time[]){
+		if(period.getDays() != 0){
+			return period.getMonths() + " days";
+		}
+		return checkHours(time);
+	}
+	
+	private String checkHours(long time[]){
+		if(time[0] != 0){
+			return time[0] + " hours";
+		}
+		return checkMinutes(time);
+	}
+	
+	private String checkMinutes(long time[]){
+		if(time[1] != 0){
+			return time[1] + " minutes";
+		}
+		return checkSeconds(time);
+	}
+	
+	private String checkSeconds(long time[]){
+		if(time[2] != 0){
+			return time[2] + " seconds";
+		}
+		return "now";
+	}
 }
