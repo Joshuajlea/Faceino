@@ -27,6 +27,7 @@ public class InMemoryMessageRepository {
 	
 	public List<Message> getAll(){
 		Collections.sort(messages, (Message m1, Message m2) -> m1.getTime().compareTo(m2.getTime()));
+		Collections.reverse(messages);
 		return messages;
 	}
 	
