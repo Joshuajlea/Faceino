@@ -25,7 +25,17 @@ public class InMemoryConversationRepository {
 		List<User> receiver = InMemoryUserRepository.getInstance().getAll();
 		Conversation con = new Conversation(receiver);
 		con.addMessage(new Message("sebastian.verfers@fdmgroup.com", "das ist ein test"));
+		
+		List<User> receiver2 = new ArrayList<User>();
+		receiver2.add(InMemoryUserRepository.getInstance().getByLoginName("tim.bell@fdmgroup.com"));
+		receiver2.add(InMemoryUserRepository.getInstance().getByLoginName("sebastian.verfers@fdmgroup.com"));
+		Conversation con2 = new Conversation(receiver2);
+		con2.addMessage(new Message("tim.bell@fdmgroup.com", "Tim here, how are you"));
+		con2.addMessage(new Message("sebastian.verfers@fdmgroup.com", "Good, thanks"));
+		con2.addMessage(new Message("tim.bell@fdmgroup.com", "cool, dude, this works"));
 		conversations.add(con);
+		conversations.add(con2);
+		System.out.println("Con 1 id: " + con.getConversationId() + "\nCon 2 id: " + con2.getConversationId());
 	}
 	
 	public boolean addConversation(Conversation con){
