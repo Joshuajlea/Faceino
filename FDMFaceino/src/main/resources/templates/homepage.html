@@ -115,9 +115,9 @@
 									
 									<div style="height: 512px; overflow: auto">
 										<p th:id="'response'+${conversation.conversationId}"></p>
-																				
+										
 									<p id="messageHistory" ></p>
-									<p id="oneMessageInChat" th:each="message : ${conversation.getMessages()}"> <b th:text="${message.sender}"></b> : <i th:text="${message.content}"></i><br/><br/></p>
+									<p id="oneMessageFromDB" th:each="message : ${conversation.getMessages()}"> <b th:text="${message.sender}"></b> : <i th:text="${message.content}"></i><br/><br/></p>
 	
 									</div>
 								</form>
