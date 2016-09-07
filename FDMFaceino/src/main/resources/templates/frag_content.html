@@ -5,12 +5,39 @@
 		<form>
 			<textarea rows="3" cols="80" id="content" name="content"
 				placeholder="Whats on your mind!!"></textarea>
-			<button id="postButton" name="postButton" onclick="retrievePosts()" type="button">Post</button>
+			<button id="postButton" name="postButton" onclick="retrievePosts()"
+				type="button">Post</button>
 
 		</form>
 		<div class="row text-center" id="contentid">CONTENT</div>
-		<div class="row text-center" th:text="${session.posts.toString()}">All
-			the posts</div>
+		<!-- <div class="row text-center" th:text="${session.posts.toString()}">All the posts</div> -->
+
+
+		<div>
+			<table>
+				<tr>
+					<td>Sender</td>
+					<td>Content</td>
+					<td>Time</td>
+				</tr>
+				<th:block th:each="post : ${session.posts}">
+					<tr>
+						<td th:text="${post.sender.split('@')[0]}"></td>
+
+						<td></td>
+						<td th:text="${post.content}"></td>
+						
+						<td></td>
+					
+					<td th:text="${post.time}"></td>
+					
+					</tr>
+				</th:block>
+
+			</table>
+
+
+		</div>
 	</div>
 
 </body>
