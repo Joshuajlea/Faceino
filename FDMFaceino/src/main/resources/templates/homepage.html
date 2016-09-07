@@ -7,7 +7,7 @@
 	<object th:include="frag_headImplementation::headFragment" th:remove="tag" ></object>
 </head>
 
-<body onload="connect()">
+<body >
 	<!-- header -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
@@ -67,70 +67,8 @@
 			<div class="col-md-7 topDown" id="contentPage">
 				<div th:replace="frag_content::logo"></div>
 			</div>
-
 			<div class="col-md-4 topDown" id="chatPage">
-
-				<div>
-
-					<!-- Nav tabs -->
-					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active">
-							<a href="#global"	aria-controls="global" role="tab" data-toggle="tab">Global</a>
-						</li>
-												
-						<li th:each="conversation, status  : ${session.conversations}" role="presentation">
-							<a th:text="'Group' + ${status.count}" th:href="'#'+ ${conversation.conversationId}" aria-controls="group1" role="tab" data-toggle="tab">Group 1</a>
-						</li>
-						<li role="presentation">
-							<a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a>
-						</li>
-					</ul>
-
-					<!-- Tab panes -->
-					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane active" id="global">
-							<br/>
-						
-							<div id="conversationDiv">
-								<form action="javascript:sendPublicChatMessage()">
-									<input type="text" id="message" placeholder="message"
-										autocomplete="off" /> 
-									<input type="submit" value="send" />
-	
-									<div style="height: 512px; overflow: auto">
-										<p id="response"></p>
-									</div>
-								</form>
-							</div>
-						
-						</div>
-						<div th:each="conversation, status  : ${session.conversations}" role="tabpanel" class="tab-pane active" th:id="${conversation.conversationId}">	
-								
-							<div style="visibility:hidden" th:text="${conversation.conversationId}" id="tempTHInfo"></div>
-									
-							<div id="conversationDiv">
-								<form th:attr="action='javascript:sendPrivateChatMessage(\'' + ${conversation.conversationId} + '\');'">
-									<input type="text" th:id="'messageGroup' + ${conversation.conversationId}" placeholder="message" autocomplete="off" /> 
-									<input type="submit" value="send" />
-									
-									<div style="height: 512px; overflow: auto">
-										<p th:id="'response'+${conversation.conversationId}"></p>
-										
-									<p id="messageHistory" ></p>
-									<p id="oneMessageFromDB" th:each="message : ${conversation.getMessages()}"> <b th:text="${message.time.dayOfMonth} + '.' + ${message.time.monthValue} + '.' + ${message.time.year} + '  ' + ${message.time.hour} + ':' + ${message.time.minute} + ':' + ${message.time.second}"></b><br/> <b th:text="${message.sender}"></b> : <i th:text="${message.content}"></i><br/><br/></p>
-	
-									</div>
-								</form>
-							</div>
-							
-						
-						</div>
-						
-						<div role="tabpanel" class="tab-pane" id="table">You will be able to see the table chat here</div> 
-						
-					</div>
-
-				</div>
+				<div th:replace="frag_chat::chat"></div>
 			</div>
 		</div>
 	</div>	
