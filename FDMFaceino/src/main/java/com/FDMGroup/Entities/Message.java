@@ -11,6 +11,7 @@ public class Message implements Comparable<Message> {
 	private String sender;
 	private String content;
 	private LocalDateTime time;
+	public String displayTime ;
 
 	protected Message() {
 	}
