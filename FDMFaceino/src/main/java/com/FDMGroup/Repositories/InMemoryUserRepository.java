@@ -26,6 +26,8 @@ public class InMemoryUserRepository {
 		
 		users.add(new User("arjun.kharel@fdmgroup.com", "test", "", Arrays.asList("USER", "ADMIN")));
 		
+		users.add(new User("mathew.mcgerty@fdmgroup.com", "123", "http://academydms/Trainee/GetPhoto/6169?imageSize=140", Arrays.asList("USER", "ADMIN")));
+		
 		for(User u : users){
 			u.setActive(true);
 		}

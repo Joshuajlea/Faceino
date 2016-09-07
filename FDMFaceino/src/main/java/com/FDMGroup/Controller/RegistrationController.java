@@ -31,7 +31,7 @@ public class RegistrationController {
 		String returnValue = checkUsernameForExistence(request, model, loginUrl);
 		
 		if(loginUrl.equals(returnValue)){
-			RegisterDAO.addUser(request.getParameter("username"), request.getParameter("password"), "");			
+			RegisterDAO.addUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("picture"));			
 		}
 		
 		
