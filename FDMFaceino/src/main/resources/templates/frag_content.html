@@ -2,6 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 	<div th:fragment="logo" class="container-fluid">
+	
+		Logged in Peeeeps:
+		<th:block th:each="user : ${usersLoggedIn}">
+			<p th:text="${user}"></p>
+		</th:block>
+	
 		<form action="javascript:retrievePosts()">
 			<textarea rows="3" cols="80" id="content" name="content"
 				placeholder="Whats on your mind!!"></textarea>

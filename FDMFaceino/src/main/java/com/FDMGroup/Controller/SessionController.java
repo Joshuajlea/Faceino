@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.FDMGroup.Entities.Message;
 import com.FDMGroup.Entities.User;
+import com.FDMGroup.Repositories.InMemoryOnlineRepository;
 import com.FDMGroup.Repositories.InMemoryUserRepository;
 import com.FDMGroup.Services.LoginDataService;
 import com.FDMGroup.Services.TimeCalculatorService;
@@ -35,7 +36,7 @@ public class SessionController {
 	
 	@Autowired
 	TimeCalculatorService tCS; 
-	
+		
 	@RequestMapping("/home")
 	public String greetUser(HttpSession session, Model model, Authentication auth){
 		
@@ -56,7 +57,9 @@ public class SessionController {
 			posts.addAll(user.getContent());
 		}
 		Collections.sort(posts);
-		Collections.reverse(posts);
+		Collections.reverse(posts);		
+		
+		model.addAttribute("usersLoggedIn", InMemoryOnlineRepository.getInstance().getAllOnlineUser());
 		
 		session.setAttribute("posts", posts);
 		return "homepage";
@@ -64,7 +67,8 @@ public class SessionController {
 	}
 
 	@RequestMapping("/redirectHome")
-	public String redirectHome(){
+	public String redirectHome(Authentication auth){
+		InMemoryOnlineRepository.getInstance().addUser(auth.getName());
 		return "redirect:/home";
 	}
 }
