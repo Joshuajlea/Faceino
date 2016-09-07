@@ -2,12 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 	<div th:fragment="logo" class="container-fluid">
-		<form>
+		<form action="javascript:retrievePosts()">
 			<textarea rows="3" cols="80" id="content" name="content"
 				placeholder="Whats on your mind!!"></textarea>
-			<button id="postButton" name="postButton" onclick="retrievePosts()"
-				type="button">Post</button>
-
+			<input type="submit" value="Submit"/>
 		</form>
 		<div class="row text-center" id="contentid">CONTENT</div>
 		<!-- <div class="row text-center" th:text="${session.posts.toString()}">All the posts</div> -->
