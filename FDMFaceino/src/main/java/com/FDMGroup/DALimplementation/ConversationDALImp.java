@@ -25,12 +25,8 @@ public class ConversationDALImp implements ConversationDAL {
 	public boolean addConversation(Conversation con) {
 		
 		for(User user : con.getReceivers()){
-			if(InMemoryUserRepository.getInstance().getByLoginName(user.getLoginName()).getConversations().size() < 4)
-				InMemoryUserRepository.getInstance().getByLoginName(user.getLoginName()).addConversation(con);
-			else 
-				System.out.println(user.getLoginName() + " is already part in four group chats. Sorry!");
+			InMemoryUserRepository.getInstance().getByLoginName(user.getLoginName()).addConversation(con);
 		}
-		
 		return InMemoryConversationRepository.getInstance().addConversation(con);
 	}
 }

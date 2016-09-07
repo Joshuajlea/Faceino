@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+
+
+	<div th:fragment="addConversation" class="container-fluid">
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Add new Conversation</button>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Add Conversation</h4>
+					</div>
+					<div class="modal-body">
+						<script type="text/javascript">loadRegisteredUsers()</script>
+						
+						<div style="height: 512px; overflow: auto">
+							<form id="userNames">
+								
+							</form>
+						</div>
+					
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button onclick="createConversation()" type="button" class="btn btn-primary" data-dismiss="modal">Create Conversation</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
