@@ -4,7 +4,8 @@
 
 
 <head>
-	<object th:include="frag_headImplementation::headFragment" th:remove="tag" ></object>
+<object th:include="frag_headImplementation::headFragment"
+	th:remove="tag"></object>
 </head>
 
 <body onload="connect()">
@@ -31,16 +32,16 @@
 						<form class="navbar-form" id="searchForm">
 							<div class="form-group">
 								<input type="text" class="form-control"
-									placeholder="Search member"/>
+									placeholder="Search member" />
 							</div>
 							<button type="submit" class="btn btn-default">Submit</button>
 						</form>
 					</li>
 					<li><a href="http://www.google.com"> <img height="80px"
-							width="60px"
-							src="" />
+							width="60px" src="" />
 					</a></li>
-					<li><a href="profile.html"><h2 th:text="${session.userData.loginName}">User</h2></a></li>
+					<li><a href="profile.html"><h2
+								th:text="${session.userData.loginName}">User</h2></a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -50,9 +51,10 @@
 	<!-- navigation menu left -->
 	<div id="navigationBar">
 		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation" class="active"><a href ="#" onclick="load_home()">Home</a></li>
-			<li role="presentation"><a href ="#" onclick="load_profile()">Profile</a></li>
-			<li role="presentation"><a href ="#" onclick="load_poker()">Poker</a></li>
+			<li role="presentation" class="active"><a href="#"
+				onclick="load_home()">Home</a></li>
+			<li role="presentation"><a href="#" onclick="load_profile()">Profile</a></li>
+			<li role="presentation"><a href="#" onclick="load_poker()">Poker</a></li>
 			<li role="presentation"><a href="/logout">Logout</a></li>
 		</ul>
 	</div>
@@ -74,69 +76,81 @@
 
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active">
-							<a href="#global"	aria-controls="global" role="tab" data-toggle="tab">Global</a>
-						</li>
-												
-						<li th:each="conversation, status  : ${session.conversations}" role="presentation">
-							<a th:text="'Group' + ${status.count}" th:href="'#'+ ${conversation.conversationId}" aria-controls="group1" role="tab" data-toggle="tab">Group 1</a>
-						</li>
-						<li role="presentation">
-							<a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a>
-						</li>
+						<li role="presentation" class="active"><a href="#global"
+							aria-controls="global" role="tab" data-toggle="tab">Global</a></li>
+
+						<li th:each="conversation, status  : ${session.conversations}"
+							role="presentation"><a th:text="'Group' + ${status.count}"
+							th:href="'#'+ ${conversation.conversationId}"
+							aria-controls="group1" role="tab" data-toggle="tab">Group 1</a></li>
+						<li role="presentation"><a href="#table"
+							aria-controls="table" role="tab" data-toggle="tab">Add</a></li>
 					</ul>
 
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="global">
-							<br/>
-						
+							<br />
+
 							<div id="conversationDiv">
 								<form action="javascript:sendPublicChatMessage()">
 									<input type="text" id="message" placeholder="message"
-										autocomplete="off" /> 
-									<input type="submit" value="send" />
-	
+										autocomplete="off" /> <input type="submit" value="send" />
+
 									<div style="height: 512px; overflow: auto">
 										<p id="response"></p>
 									</div>
 								</form>
 							</div>
-						
+
 						</div>
-						<div th:each="conversation, status  : ${session.conversations}" role="tabpanel" class="tab-pane active" th:id="${conversation.conversationId}">
-							<br/>						
+						<div th:each="conversation, status  : ${session.conversations}"
+							role="tabpanel" class="tab-pane active"
+							th:id="${conversation.conversationId}">
+							<br />
 							<div id="conversationDiv">
-								<form action="javascript:sendPrivateChatMessage($('#tempTHInfo').text())">
-									<input type="text" th:id="'messageGroup' + ${conversation.conversationId}" placeholder="message" autocomplete="off" /> 
-									<input type="submit" value="send" />
-										
+								<form
+									action="javascript:sendPrivateChatMessage($('#tempTHInfo').text())">
+									<input type="text"
+										th:id="'messageGroup' + ${conversation.conversationId}"
+										placeholder="message" autocomplete="off" /> <input
+										type="submit" value="send" />
+
 									<div style="height: 512px; overflow: auto">
 										<p th:id="'response'+${conversation.conversationId}"></p>
-																				
-									<p id="messageHistory" ></p>
-									<p id="oneMessageInChat" th:each="message : ${session.conversations[0].getMessages()}"> <b th:text="${message.sender}"></b> : <i th:text="${message.content}"></i><br/><br/></p>
-	
+
+										<p id="messageHistory"></p>
+										<p id="oneMessageInChat"
+											th:each="message : ${session.conversations[0].getMessages()}">
+											<b th:text="${message.sender}"></b> : <i
+												th:text="${message.content}"></i><br /> <br />
+										</p>
+
 									</div>
 								</form>
 							</div>
-							
-							<div style="visibility:hidden" th:text="${conversation.conversationId}" id="tempTHInfo"></div>
-						
+
+							<div style="visibility: hidden"
+								th:text="${conversation.conversationId}" id="tempTHInfo"></div>
+
 						</div>
-						
-						<div role="tabpanel" class="tab-pane" id="table">You will be able to see the table chat here</div> 
-						
+
+						<div role="tabpanel" class="tab-pane" id="table">You can add
+							a conversation here</div>
+
+						<div th:replace="frag_addConversation::addConversation"></div>
+
 					</div>
 
 				</div>
 			</div>
 		</div>
-	</div>	
-	
-	
-	<div style="visibility: hidden" id="hiddenUser" th:text="${session.userData.loginName}">John Doe</div>
-		
+	</div>
+
+
+	<div style="visibility: hidden" id="hiddenUser"
+		th:text="${session.userData.loginName}">John Doe</div>
+
 	<div style="visibility: hidden" id="hiddenContent">
 		<div th:replace="frag_content::logo"></div>
 	</div>
