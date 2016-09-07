@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-       <div th:fragment="logo" class="container-fluid">
-       		<div class="row text-center">
-       			PROFILE
-       		</div>
-       </div>
+	<div th:fragment="logo" class="container-fluid">
+		<div class="row text-center">
+			<h1>
+				 
+				<p>
+					LoginName: <span th:text="${session.userData.loginName}"></span>
+				</p>
+				<br />
+				<p>
+					Balance :<span th:text="${session.userData.balance}"></span>
+				</p>
+				<br />
+				<img th:src="${session.userData.picReference}" height="250"
+					width="250"></img>
+
+
+
+
+
+			</h1>
+		</div>
+	</div>
 </body>
 </html>
