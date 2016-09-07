@@ -34,3 +34,26 @@
 		background-color: grey;
 		color: white;
 	}
+	
+.postBox {
+	border-width:2px;
+	border-style:solid;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+
+.nameString{
+	float: left;
+	margin-bottom: 5px;
+}
+
+.dateString{
+	float: right;	
+}
+
+.contentString{
+	clear: both;	
+	border-width:1px;
+	border-style:solid;
+	padding: 2px;
+}
