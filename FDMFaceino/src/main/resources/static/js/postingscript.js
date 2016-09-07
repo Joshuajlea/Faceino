@@ -2,10 +2,11 @@ function retrievePosts() {
     var url = '/posts';
    
     if ($('#content').val() != '') {
-        url = url + '/' + $('#content').val();
+    	var temp = $('#content').val();
+    	temp = temp.replace(/ /g,'_');
+    	url = url + '/' + temp;
     } 
     
-    $("#hiddenContent").load(url);
-    $("#contentPage").load('/posts');
-    document.getElementById("contentPage").innerHTML= document.getElementById("hiddenContent").innerHTML;
+    $("#contentPage").load(url);
+    $("#hiddenContent").load('/posts');
 }
