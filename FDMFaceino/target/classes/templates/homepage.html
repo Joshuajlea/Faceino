@@ -1,68 +1,152 @@
 <!DOCTYPE html>
-<html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
 
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="customstyle.css">
-	
-	<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.min.js"></script>
-
-	<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	
+	<object th:include="frag_headImplementation::headFragment" th:remove="tag" ></object>
 </head>
 
-<body>
-<!-- header -->
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="http://www.fdmgroup.com"><h2>FDM Group</h2></a>
-    </div>
+<body onload="connect()">
+	<!-- header -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/home"><h2>FDM* Book</h2></a>
+			</div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-		<li>
-			<form class="navbar-form" id="searchForm">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search member">
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<form class="navbar-form" id="searchForm">
+							<div class="form-group">
+								<input type="text" class="form-control"
+									placeholder="Search member"/>
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</li>
+					<li><a href="http://www.google.com"> <img height="80px"
+							width="60px"
+							src="" />
+					</a></li>
+					<li><a href="profile.html"><h2 th:text="${session.userData.loginName}">User</h2></a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<!-- navigation menu left -->
+	<div id="navigationBar">
+		<ul class="nav nav-pills nav-stacked">
+			<li role="presentation" class="active"><a href ="#" onclick="load_home()">Home</a></li>
+			<li role="presentation"><a href ="#" onclick="load_profile()">Profile</a></li>
+			<li role="presentation"><a href ="#" onclick="load_poker()">Poker</a></li>
+			<li role="presentation"><a href="/logout">Logout</a></li>
+		</ul>
+	</div>
+
+	<!--content and chat divs-->
+
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="col-md-1"></div>
+
+			<div class="col-md-7 topDown" id="contentPage">
+				<div th:replace="frag_content::logo"></div>
+			</div>
+
+			<div class="col-md-4 topDown" id="chatPage">
+
+				<div>
+
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active">
+							<a href="#global"	aria-controls="global" role="tab" data-toggle="tab">Global</a>
+						</li>
+												
+						<li th:each="conversation, status  : ${session.conversations}" role="presentation">
+							<a th:text="'Group' + ${status.count}" th:href="'#'+ ${conversation.conversationId}" aria-controls="group1" role="tab" data-toggle="tab">Group 1</a>
+						</li>
+						<li role="presentation">
+							<a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a>
+						</li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="global">
+							<br/>
+						
+							<div id="conversationDiv">
+								<form action="javascript:sendPublicChatMessage()">
+									<input type="text" id="message" placeholder="message"
+										autocomplete="off" /> 
+									<input type="submit" value="send" />
+	
+									<div style="height: 512px; overflow: auto">
+										<p id="response"></p>
+									</div>
+								</form>
+							</div>
+						
+						</div>
+						<div th:each="conversation, status  : ${session.conversations}" role="tabpanel" class="tab-pane active" th:id="${conversation.conversationId}">	
+								
+							<div style="visibility:hidden" th:text="${conversation.conversationId}" id="tempTHInfo"></div>
+									
+							<div id="conversationDiv">
+								<form th:attr="action='javascript:sendPrivateChatMessage(\'' + ${conversation.conversationId} + '\');'">
+									<input type="text" th:id="'messageGroup' + ${conversation.conversationId}" placeholder="message" autocomplete="off" /> 
+									<input type="submit" value="send" />
+									
+									<div style="height: 512px; overflow: auto">
+										<p th:id="'response'+${conversation.conversationId}"></p>
+										
+									<p id="messageHistory" ></p>
+									<p id="oneMessageFromDB" th:each="message : ${conversation.getMessages()}"> <b th:text="${message.time.dayOfMonth} + '.' + ${message.time.monthValue} + '.' + ${message.time.year} + '  ' + ${message.time.hour} + ':' + ${message.time.minute} + ':' + ${message.time.second}"></b><br/> <b th:text="${message.sender}"></b> : <i th:text="${message.content}"></i><br/><br/></p>
+	
+									</div>
+								</form>
+							</div>
+							
+						
+						</div>
+						
+						<div role="tabpanel" class="tab-pane" id="table">You will be able to see the table chat here</div> 
+						
+					</div>
+
 				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
-			</form>
-		</li>
-		<li>
-			<a href="http://www.google.com">
-				<img height="80px" width="60px" src="C:\Users\Public\Pictures\Sample Pictures\Koala.jpg"/>
-			</a>
-		</li>
-		<li><a href="profile.html"><h2>{{userName}}</h2></a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-<!-- navigation menu left -->
-<div id="navigationBar">
-	<ul class="nav nav-pills nav-stacked">
-		<li role="presentation" class="active"><a href="home.html">Home</a></li>
-		<li role="presentation"><a href="profile.html">Profile</a></li>
-		<li role="presentation"><a href="poker.html">Poker</a></li>
-		<li role="presentation"><a href="http://www.google.com">Logout</a></li>
-	</ul>
-</div>
-
-<div id="contentPage">
-	<object type="text/html" data="content.html"></object>
-</div>
+			</div>
+		</div>
+	</div>	
 	
+	
+	<div style="visibility: hidden" id="hiddenUser" th:text="${session.userData.loginName}">John Doe</div>
+		
+	<div style="visibility: hidden" id="hiddenContent">
+		<div th:replace="frag_content::logo"></div>
+	</div>
+	<div style="visibility: hidden" id="hiddenProfile">
+		<div th:replace="frag_profile::logo"></div>
+	</div>
+	<div style="visibility: hidden" id="hiddenPoker">
+		<div th:replace="frag_poker::logo"></div>
+	</div>
 </body>
-	
+
 </html>

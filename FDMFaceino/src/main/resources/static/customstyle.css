@@ -20,6 +20,17 @@
 		color: white;
 }
 
+#oneMessageFromDB {
+		margin-top: 5px;
+		padding-top: 10px;
+		padding-left: 12px;
+		border-radius: 20px;
+		width: 475px;
+		border: 1;
+		background-color: #A9A9A9;
+		color: white;
+}
+
 .topDown{
 	top: 120px	
 }

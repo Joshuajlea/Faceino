@@ -45,7 +45,7 @@ var stompClient2 = null;
 
 	function sendPrivateChatMessage(messageField) {
 		var sender = document.getElementById('hiddenUser').innerHTML;
-		var content = document.getElementById('messageGroup'+messageField).value;
+		var content = document.getElementById('messageGroup' + messageField).value;
 		stompClient2.send("/app/private", {}, JSON.stringify({
 			'sender' : sender,
 			'content' : content,
@@ -58,7 +58,9 @@ var stompClient2 = null;
 
 	function showMessage(message, responseField) {
 		var response = document.getElementById(responseField);
-
+		var time = document.createElement('b');
+		time.appendChild(document.createTextNode(message.time.dayOfMonth + '.' + message.time.monthValue + '.' + message.time.year  + '  ' + message.time.hour + ':' + message.time.minute + ':' + message.time.second));
+		
 		var boldName = document.createElement('b');
 		var name = message.sender.split('@')[0];
 		boldName.appendChild(document.createTextNode(name));
@@ -69,6 +71,8 @@ var stompClient2 = null;
 		var p = document.createElement('div');
 		p.id = "oneMessageInChat";
 		p.style.wordWrap = 'break-word';
+		p.appendChild(time);
+		p.appendChild(document.createElement('br'));
 		p.appendChild(boldName);
 		p.appendChild(document.createTextNode(' : '));
 		p.appendChild(cursivContent);
@@ -79,6 +83,8 @@ var stompClient2 = null;
 	
 	function showPrivateMessage(message) {
 		var response = document.getElementById('response' + message.conversationId);
+		var time = document.createElement('b');
+		time.appendChild(document.createTextNode(message.time.dayOfMonth + '.' + message.time.monthValue + '.' + message.time.year + '  ' + message.time.hour + ':' + message.time.minute + ':' + message.time.second));
 		var boldName = document.createElement('b');
 		var name = message.sender.split('@')[0];
 		boldName.appendChild(document.createTextNode(name));
@@ -89,6 +95,8 @@ var stompClient2 = null;
 		var p = document.createElement('div');
 		p.id = "oneMessageInChat";
 		p.style.wordWrap = 'break-word';
+		p.appendChild(time);
+		p.appendChild(document.createElement('br'));
 		p.appendChild(boldName);
 		p.appendChild(document.createTextNode(' : '));
 		p.appendChild(cursivContent);
