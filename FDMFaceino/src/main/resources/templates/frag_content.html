@@ -12,29 +12,22 @@
 
 
 		<div>
-			<table>
-				<tr>
-					<td>Sender</td>
-					<td>Content</td>
-					<td>Time</td>
-				</tr>
-				<th:block th:each="post : ${session.posts}">
-					<tr>
-						<td th:text="${post.sender.split('@')[0]}"></td>
-
-						<td></td>
-						<td th:text="${post.content}"></td>
-						
-						<td></td>
-					
-					<td th:text="${post.time}"></td>
-					
-					</tr>
-				</th:block>
-
-			</table>
-
-
+			<th:block th:each="post : ${session.posts}">
+				<div class="postBox">	
+					<div class="divFloat">
+						<div class="nameString">			
+							<span>by </span>
+							<span th:text="${post.sender.split('@')[0]}"></span>
+						</div>
+						<div class="dateString">
+							<span th:text="${post.displayTime}"></span>
+						</div>
+					</div>
+					<div class="contentString">
+						<span th:text="${post.content}"></span>
+					</div>
+				</div>
+			</th:block>
 		</div>
 	</div>
 

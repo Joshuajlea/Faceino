@@ -1,5 +1,6 @@
 package com.FDMGroup.Controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +20,7 @@ import com.FDMGroup.Entities.Message;
 import com.FDMGroup.Entities.User;
 import com.FDMGroup.Repositories.InMemoryUserRepository;
 import com.FDMGroup.Services.LoginDataService;
+import com.FDMGroup.Services.TimeCalculatorService;
 import com.FDMGroup.Services.Implementation.LoginDataServiceImpl;
 
 @Controller
@@ -43,6 +45,9 @@ public class ContentController {
 
 	@Autowired
 	UserDAL userDImpl;
+	
+	@Autowired
+	TimeCalculatorService tCS; 
 
 	@GetMapping("/posts/{text}")
 	public String postStuff(Model model, HttpSession session, HttpServletRequest request,
@@ -51,8 +56,6 @@ public class ContentController {
 		text = text.replace('_', ' ');
 		
 		userDImpl.getByLoginName(auth.getName()).getContent().add(new Message(auth.getName(), text));
-
-		//System.out.println(request.getAttribute("content").toString());
 		
 		sessionThings(session);
 		return "frag_content :: logo";
@@ -67,13 +70,17 @@ public class ContentController {
 	private void sessionThings(HttpSession session) {
 		posts.clear();// clear the list to avoid duplicate entries...
 		for (User user : InMemoryUserRepository.getInstance().getAll()) {
-			// posts.addAll(loginDataService.getUserDataFromDatabaseByName(auth.getName()).getContent());
-			posts.addAll(user.getContent());
+			
+			List<Message> getTimeList = user.getContent();
+			for(Message m : getTimeList){
+				m.displayTime = tCS.getTimeBetweenAsString(m.getTime(), LocalDateTime.now());
+			}
+			
+			posts.addAll(getTimeList);
 		}
 		Collections.sort(posts);
 		Collections.reverse(posts);
 
 		session.setAttribute("posts", posts);
 	}
-
 }
