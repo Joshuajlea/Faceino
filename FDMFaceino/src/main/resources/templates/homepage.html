@@ -53,6 +53,11 @@
 			<li role="presentation" class="active"><a href ="#" onclick="load_home()">Home</a></li>
 			<li role="presentation"><a href ="#" onclick="load_profile()">Profile</a></li>
 			<!--<li role="presentation"><a href ="#" onclick="load_poker()">Poker</a></li>-->
+			
+			<li th:switch="${#lists.contains(session.userData.roles, 'ADMIN')}">
+  				<a th:case="true" href="/admin">Adminpage</a>
+  			</li>
+			
 			<li role="presentation"><a href="/logoutOut">Logout</a></li>
 		</ul>
 	</div>
