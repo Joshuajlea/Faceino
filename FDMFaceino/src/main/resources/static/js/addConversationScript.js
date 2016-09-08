@@ -25,6 +25,7 @@ function showAllUserNames(data){
 
 function createConversation(){
 	var receivers = [];
+	receivers.push(document.getElementById('hiddenUser').innerHTML);
 	for (i=0 ; i<document.getElementById('userNames').elements.length ; i++){
 		if (document.getElementById('checkbox_' + i).checked) {
 			receivers.push(document.getElementById('checkbox_' + i).name);
