@@ -23,8 +23,6 @@ public class InMemoryConversationRepository {
 	private InMemoryConversationRepository(){	
 		// default conversation only for testing
 		List<User> receiver = InMemoryUserRepository.getInstance().getAll();
-		Conversation con = new Conversation(receiver);
-		con.addMessage(new Message("sebastian.verfers@fdmgroup.com", "das ist ein test"));
 		
 		List<User> receiver2 = new ArrayList<User>();
 		receiver2.add(InMemoryUserRepository.getInstance().getByLoginName("tim.bell@fdmgroup.com"));
@@ -33,7 +31,6 @@ public class InMemoryConversationRepository {
 		con2.addMessage(new Message("tim.bell@fdmgroup.com", "Tim here, how are you"));
 		con2.addMessage(new Message("sebastian.verfers@fdmgroup.com", "Good, thanks"));
 		con2.addMessage(new Message("tim.bell@fdmgroup.com", "cool, dude, this works"));
-		conversations.add(con);
 		conversations.add(con2);
 	}
 	

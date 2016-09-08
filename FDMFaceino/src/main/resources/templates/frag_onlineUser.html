@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+       <div th:fragment="user">
+       		<form action="javascript:updateOnlineUsers()">				
+				<input type="submit" value="Update Online Users"/>
+			</form>
+       
+       		<div>
+       			Logged in Users:
+					<th:block th:each="user : ${usersLoggedIn}">
+						<span th:text="${user}"></span>
+					</th:block>
+       		</div>
+       </div>
+</body>
+</html>

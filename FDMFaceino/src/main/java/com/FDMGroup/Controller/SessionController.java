@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -70,5 +71,12 @@ public class SessionController {
 	public String redirectHome(Authentication auth){
 		InMemoryOnlineRepository.getInstance().addUser(auth.getName());
 		return "redirect:/home";
+	}
+	
+	
+	@GetMapping("/onlineUsers")
+	public String postStuff(Model model, HttpSession session) {
+		model.addAttribute("usersLoggedIn", InMemoryOnlineRepository.getInstance().getAllOnlineUser());
+		return "frag_onlineUser :: user";
 	}
 }
