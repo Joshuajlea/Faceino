@@ -15,7 +15,8 @@
 							<a th:text="'Group' + ${status.count}" th:href="'#'+ ${conversation.conversationId}" aria-controls="group1" role="tab" data-toggle="tab">Group 1</a>
 						</li>
 						<li role="presentation">
-							<a href="#table" aria-controls="table" role="tab" data-toggle="tab">Add</a>
+							<a href="#table" aria-controls="table" role="tab" data-toggle="tab" th:replace="frag_addConversation::addConversation">
+							</a>
 						</li>
 					</ul>
 
@@ -37,11 +38,13 @@
 							</div>
 						
 						</div>
-						<div th:each="conversation, status  : ${session.conversations}" role="tabpanel" class="tab-pane active" th:id="${conversation.conversationId}">	
+						<div th:each="conversation : ${session.conversations}" role="tabpanel" class="tab-pane active" th:id="${conversation.conversationId}">	
 								
 							<div style="visibility:hidden" th:text="${conversation.conversationId}" id="tempTHInfo"></div>
 									
 							<div id="conversationDiv">
+								<b th:each="user : ${conversation.receivers}" th:text="${user.getName()} + ','"></b>
+								<br/><br/>
 								<form th:attr="action='javascript:sendPrivateChatMessage(\'' + ${conversation.conversationId} + '\');'">
 									<input type="text" th:id="'messageGroup' + ${conversation.conversationId}" placeholder="message" autocomplete="off" /> 
 									<input type="submit" value="send" />
@@ -58,10 +61,6 @@
 							
 						
 						</div>
-						
-						<div role="tabpanel" class="tab-pane" id="table">
-							<div th:replace="frag_addConversation::addConversation"></div>
-						</div> 
 						
 					</div>
 
