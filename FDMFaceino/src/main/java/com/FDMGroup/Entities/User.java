@@ -21,6 +21,10 @@ public class User {
 		this.roles = roles;
 	}
 	
+	public String getName(){
+		return loginName.split("@")[0];
+	}
+	
 	public boolean addConversation(Conversation conversation){
 		return conversations.add(conversation);
 	}
