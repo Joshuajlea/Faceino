@@ -39,8 +39,9 @@ public class AddConversationControler {
 	}
 	
 	@GetMapping("/allusers")	
-	public @ResponseBody List<String> getAllRegisteredUsers(Model model) {
-		return userData.getAll().stream().map(a -> a.getLoginName()).collect(Collectors.toList());
+	public @ResponseBody List<String> getAllRegisteredUsers(Model model, Authentication auth) {
+		return userData.getAll().stream()
+				.filter(u -> !(u.getLoginName().equals(auth.getName()))).map(a -> a.getLoginName()).collect(Collectors.toList());
 	}
 	
 	@GetMapping("/conversation")
