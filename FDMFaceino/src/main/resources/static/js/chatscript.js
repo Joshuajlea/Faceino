@@ -31,6 +31,13 @@ var stompClient2 = null;
 		});
 	}
 
+	function add0(number){
+		if(number < 10)
+			return '0' + number;
+		else 
+			return number;
+	}
+		
 	function sendPublicChatMessage() {
 		var sender = document.getElementById('hiddenUser').innerHTML;
 		var message = document.getElementById('message').value;
@@ -59,7 +66,7 @@ var stompClient2 = null;
 	function showMessage(message, responseField) {
 		var response = document.getElementById(responseField);
 		var time = document.createElement('b');
-		time.appendChild(document.createTextNode(message.time.dayOfMonth + '.' + message.time.monthValue + '.' + message.time.year  + '  ' + message.time.hour + ':' + message.time.minute + ':' + message.time.second));
+		time.appendChild(document.createTextNode(getDateString(message)));
 		
 		var boldName = document.createElement('b');
 		var name = message.sender.split('@')[0];
@@ -81,10 +88,19 @@ var stompClient2 = null;
 		response.insertBefore(p, response.childNodes[0]);
 	}
 	
+	function getDateString(message){
+		return add0(message.time.dayOfMonth) + '.' +
+		add0( message.time.monthValue) + '.' + 
+		add0(message.time.year)  + '  ' + 
+		add0(message.time.hour) + ':' + 
+		add0(message.time.minute) + ':' + 
+		add0(message.time.second)
+	}
+	
 	function showPrivateMessage(message) {
 		var response = document.getElementById('response' + message.conversationId);
 		var time = document.createElement('b');
-		time.appendChild(document.createTextNode(message.time.dayOfMonth + '.' + message.time.monthValue + '.' + message.time.year + '  ' + message.time.hour + ':' + message.time.minute + ':' + message.time.second));
+		time.appendChild(document.createTextNode(getDateString(message)));
 		var boldName = document.createElement('b');
 		var name = message.sender.split('@')[0];
 		boldName.appendChild(document.createTextNode(name));
