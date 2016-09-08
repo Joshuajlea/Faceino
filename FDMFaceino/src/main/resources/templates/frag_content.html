@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-	<div th:fragment="logo" class="container-fluid">
+	<div th:fragment="contentFrag" class="container-fluid">
 	
-		Logged in Peeeeps:
-		<th:block th:each="user : ${usersLoggedIn}">
-			<p th:text="${user}"></p>
-		</th:block>
-	
+		<div id="userOnlinePage">
+			<div th:replace="frag_onlineUser::user"></div>
+		</div>
+		
 		<form action="javascript:retrievePosts()">
 			<textarea rows="3" cols="80" id="content" name="content"
 				placeholder="Whats on your mind!!"></textarea>
 			<input type="submit" value="Submit"/>
 		</form>
-		<div class="row text-center" id="contentid"><h2>Posts</h2></div>
+		<div class="row text-center" id="contentid"><h2>Posts</h2></div> 
+		
+		<form action="javascript:updatePosts()">				
+				<input type="submit" value="Update Posts"/>
+		</form>
 		<!-- <div class="row text-center" th:text="${session.posts.toString()}">All the posts</div> -->
 
 
