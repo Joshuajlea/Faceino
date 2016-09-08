@@ -3,7 +3,7 @@ function updateOnlineUsers() {
     $("#userOnlinePage").load(url);
 }
 
-function updatePosts() {
-    var url = '/posts';    
-    $("#contentPage").load(url);
+function updatePosts() {  
+    $("#contentPage").load('/posts');
+    $("#hiddenContent").load('/posts');
 }

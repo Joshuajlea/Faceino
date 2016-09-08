@@ -31,19 +31,6 @@ public class ContentController {
 	LoginDataService loginDataService = new LoginDataServiceImpl();
 	private List<Message> posts = new ArrayList<Message>();
 
-	/*
-	 * @PostMapping("/postcontent") public String postContent(HttpServletRequest
-	 * request, Authentication auth) {
-	 * 
-	 * System.out.println("Request param: " + request.getParameter("content"));
-	 * 
-	 * String tempUser = auth.getName().toString();
-	 * loginDataService.getUserDataFromDatabaseByName(tempUser) .addContent(new
-	 * Message(tempUser, request.getParameter("content")));
-	 * 
-	 * return "redirect:/home"; }
-	 */
-
 	@Autowired
 	UserDAL userDImpl;
 	
@@ -59,14 +46,14 @@ public class ContentController {
 		userDImpl.getByLoginName(auth.getName()).getContent().add(new Message(auth.getName(), text));
 		model.addAttribute("usersLoggedIn", InMemoryOnlineRepository.getInstance().getAllOnlineUser());
 		sessionThings(session);
-		return "frag_content :: logo";
+		return "frag_content :: contentFrag";
 	}
 
 	@GetMapping("/posts")
 	public String postStuff(Model model, HttpSession session) {
 		sessionThings(session);
 		model.addAttribute("usersLoggedIn", InMemoryOnlineRepository.getInstance().getAllOnlineUser());
-		return "frag_content :: logo";
+		return "frag_content :: contentFrag";
 	}
 
 	private void sessionThings(HttpSession session) {
