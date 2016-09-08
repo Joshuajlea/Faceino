@@ -9,12 +9,16 @@
     width: 100px;
 }
 
+#responseDiv{
+	overflow: auto;
+}
+
 #oneMessageInContent {
 		margin-top: 5px;
 		padding-top: 10px;
 		padding-left: 12px;
 		border-radius: 20px;
-		width: 512px;
+		width: 100%;
 		border: 1;
 		background-color: grey;
 		color: white;
@@ -25,7 +29,7 @@
 		padding-top: 10px;
 		padding-left: 12px;
 		border-radius: 20px;
-		width: 475px;
+		width: 100%;;
 		border: 1;
 		background-color: #A9A9A9;
 		color: white;
@@ -40,7 +44,6 @@
 		padding-top: 10px;
 		padding-left: 12px;
 		border-radius: 20px;
-		width: 475px;
 		border: 1;
 		background-color: grey;
 		color: white;
