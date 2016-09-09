@@ -21,8 +21,7 @@ public class RegisterDAO {
 	}
 	
 	public static boolean checkIfFDMMail(String username){
-		String[] split = username.split("@");
-		return username.matches("[a-zA-Z]+\\.[a-zA-Z]+@fdmgroup.com");
+		return username.matches("[a-zA-Z0-9]+\\.[a-zA-Z0-9]+@fdmgroup.com");
 	}
 	
 	public static boolean checkPassword(String password, String rpassword){
