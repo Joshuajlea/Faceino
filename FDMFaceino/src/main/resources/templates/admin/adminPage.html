@@ -4,7 +4,8 @@
 
 
 <head>
-	<object th:include="frag_headImplementation::headFragment" th:remove="tag" ></object>
+<object th:include="frag_headImplementation::headFragment"
+	th:remove="tag"></object>
 </head>
 
 <body onload="connect()">
@@ -31,47 +32,53 @@
 						<form class="navbar-form" id="searchForm">
 							<div class="form-group">
 								<input type="text" class="form-control"
-									placeholder="Search member"/>
+									placeholder="Search member" />
 							</div>
 							<button type="submit" class="btn btn-default">Submit</button>
 						</form>
 					</li>
 					<li><a href="http://www.google.com"> <img height="70px"
-							width="70px"
-							th:src="${session.userData.picReference}" />
+							width="70px" th:src="${session.userData.picReference}" />
 					</a></li>
-					<li><a href="profile.html"><h2 th:text="${session.userData.loginName}">User</h2></a></li>
+					<li><a href="profile.html"><h2
+								th:text="${session.userData.loginName}">User</h2></a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-	<!-- navigation menu left -->
-	<div id="navigationBar">
-		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation" class="active"><a href="home.html">Home</a></li>
-			<li role="presentation"><a href="/logoutOut">Logout</a></li>
-			<li role="presentation"><a href="#" onclick="load_nUsers()">new Users</a></li>
-			<li role="presentation"><a href="#" onclick="load_eUsers()">enabled Users</a></li>
-			<li role="presentation"><a href="#" onclick="load_bUsers()">blocked Users</a></li>
-		</ul>
-	</div>
 
 	<!--content and chat divs-->
 
 	<div class="container-fluid">
 		<div class="row">
 
-			<div class="col-md-1"></div>
+			<div class="col-md-1">
+
+				<!-- navigation menu left -->
+				<div id="navigationBar">
+					<ul class="nav nav-pills nav-stacked">
+						<li role="presentation" class="active"><a href="home.html">Home</a></li>
+						<li role="presentation"><a href="/logoutOut">Logout</a></li>
+						<li role="presentation"><a href="#" onclick="load_nUsers()">new
+								Users</a></li>
+						<li role="presentation"><a href="#" onclick="load_eUsers()">enabled
+								Users</a></li>
+						<li role="presentation"><a href="#" onclick="load_bUsers()">blocked
+								Users</a></li>
+					</ul>
+				</div>
+			</div>
 
 			<div class="col-md-7 topDown" id="contentPage">
 				<div th:replace="frag_newUsers::user"></div>
 			</div>
 		</div>
 	</div>
-	
-	<div style="visibility: hidden" id="hiddenUser" th:text="${session.userData.loginName}">John Doe</div>
+
+	<div style="visibility: hidden" id="hiddenUser"
+		th:text="${session.userData.loginName}">John Doe</div>
 	<div style="visibility: hidden" id="hiddenNUser">
 		<div th:replace="frag_newUsers::user"></div>
 	</div>
@@ -81,7 +88,7 @@
 	<div style="visibility: hidden" id="hiddenBUser">
 		<div th:replace="frag_blockedUsers::user"></div>
 	</div>
-	
+
 </body>
 
 </html>

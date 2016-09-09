@@ -3,14 +3,21 @@
 }
 
 #navigationBar {
-	position: absolute;
-    top: 120px;
-    left: 10px;
-    width: 100px;
+	position: relative;
+    top: 135px;
 }
 
 #responseDiv{
 	overflow: auto;
+}
+
+.userNameInGroup{
+	background-color: rgb(62, 81, 185);	
+	color: white;
+	border-radius: 5px;
+	padding: 1px;
+	pading-left: 3px;
+	pading-right: 3px;
 }
 
 #oneMessageInContent {
